@@ -1,0 +1,70 @@
+﻿html {
+    background: url("/Content/Images/Background.png");
+    font-family: sans-serif;
+}
+
+.body {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.header-wrapper {
+  width: 60%;
+  margin: auto;
+}
+
+header {
+  height: 75px;
+  background-color: dodgerblue;
+  margin-left: -6px;
+  margin-top: -8px;
+  margin-right: -8px;
+  color: whitesmoke;
+}
+
+.buffer {
+  background-image: url("/Content/Images/Buffer.jpg");
+  background-repeat: repeat-x;
+  height: 75px;
+  width: 100%;
+  margin-left: -6px;
+  padding-right: 14px;
+}
+
+footer {
+  background-image: url("/Content/Images/Buffer.jpg");
+  background-repeat: repeat-x;
+  height: 75px;
+  width: 100%;
+  margin-left: -6px;
+  padding-right: 14px;
+  bottom: -2em;
+  position: fixed;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.page-title {
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+/*Stable Wizard*/
+.email-in-header {
+  color: whitesmoke;
+  /*margin-top: -120px;*/
+  text-align: center;
+    clear: both;
+}
+
+.help {
+    float: right;
+    margin-top: -35px;
+}
