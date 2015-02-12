@@ -31,11 +31,10 @@ gulp.task('javascript', function(){
   .pipe(jshint.reporter('default'))
   .pipe(concat('all.js'))
   .pipe(gulp.dest('dist/js'))
-	.pipe(uglify())
-	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('dist/js'))
-})
-
+  .pipe(uglify())
+  .pipe(rename({suffix: '.min'}))
+  .pipe(gulp.dest('dist/js'))
+});
 
 
 gulp.task('clean', function() {
