@@ -107,6 +107,12 @@
     <Content Include="Content\Layout.css" />
     <Content Include="Content\legacy.css" />
     <None Include="Content\src\sass\test.scss" />
+    <Content Include="Content\src\js\controllers\WizardEmailControllerjs.js" />
+    <Content Include="Content\src\js\Wizard.js" />
+    <Content Include="Content\src\vendor\angular\angular-route.js" />
+    <Content Include="Content\src\vendor\angular\angular-route.min.js" />
+    <Content Include="Content\src\vendor\angular\angular.js" />
+    <Content Include="Content\src\vendor\angular\angular.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Web.config" />
@@ -120,13 +126,17 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Content\src\vendor\angular\angular.min.js.map" />
+    <Content Include="Content\src\vendor\angular\angular-route.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
