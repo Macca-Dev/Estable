@@ -124,14 +124,16 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Content\index.html" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Content\views\wizard\email.html" />
     <Content Include="Content\src\vendor\angular\angular.min.js.map" />
     <Content Include="Content\src\vendor\angular\angular-route.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
