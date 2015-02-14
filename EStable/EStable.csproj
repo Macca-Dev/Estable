@@ -102,11 +102,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\gulpfile.js" />
     <Content Include="Content\Images\Background.png" />
     <Content Include="Content\Images\Buffer.jpg" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\legacy.css" />
     <None Include="Content\src\sass\test.scss" />
+    <Content Include="Content\src\js\controllers\BaseController.js" />
     <Content Include="Content\src\js\controllers\WizardEmailControllerjs.js" />
     <Content Include="Content\src\js\Wizard.js" />
     <Content Include="Content\src\vendor\angular\angular-route.js" />
@@ -126,7 +128,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Content\index.html" />
     <None Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Content\views\wizard\email.html" />
+    <Content Include="Content\src\views\email.html" />
     <Content Include="Content\src\vendor\angular\angular.min.js.map" />
     <Content Include="Content\src\vendor\angular\angular-route.min.js.map" />
   </ItemGroup>

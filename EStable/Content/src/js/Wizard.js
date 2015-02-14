@@ -5,11 +5,9 @@
 
         $routeProvider
             .when("/", {
-                templateUrl: "views/wizard/email.html",
+                templateUrl: "src/views/email.html",
                 controller: "WizardEmailController"
             })
             .otherwise({ redirectTo: "/" });
     });
-
-
 }());
