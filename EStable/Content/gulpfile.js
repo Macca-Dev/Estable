@@ -29,7 +29,7 @@ gulp.task('javascript', function(){
   return gulp.src('src/js/**/*.js')
   .pipe(jshint())
   .pipe(jshint.reporter('default'))
-  .pipe(concat('all.js'))
+  .pipe(concat('wizard.js'))
   .pipe(gulp.dest('dist/js'))
   .pipe(uglify())
   .pipe(rename({suffix: '.min'}))
