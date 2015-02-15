@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EStable", "EStable\EStable.csproj", "{2B033BE1-9D22-49FA-A425-4C321017DA1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizard.Api", "Wizard.Api\Wizard.Api.csproj", "{B2D55052-26AE-49E4-8F7E-01A260A90DD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{2B033BE1-9D22-49FA-A425-4C321017DA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B033BE1-9D22-49FA-A425-4C321017DA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B033BE1-9D22-49FA-A425-4C321017DA1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D55052-26AE-49E4-8F7E-01A260A90DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D55052-26AE-49E4-8F7E-01A260A90DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D55052-26AE-49E4-8F7E-01A260A90DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D55052-26AE-49E4-8F7E-01A260A90DD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

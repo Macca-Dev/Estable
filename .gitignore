@@ -28,5 +28,6 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 EStable/Content/node_modules/*
+packages/*
 EStable/Content/dist/*
 EStable/Content/sass-cache/*
