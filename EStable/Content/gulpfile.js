@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   sass = require('gulp-ruby-sass'),
+  shell = require('gulp-shell'),
   watch = require('gulp-watch'),
   autoprefixer = require('gulp-autoprefixer'),
   minifycss = require('gulp-minify-css'),
@@ -14,7 +15,8 @@ var gulp = require('gulp'),
 
 
 gulp.task('css', function () {
-  return gulp.src('src/sass/**/*.scss')
+  gulp.start('header_css');
+  return gulp.src('src/sass/*.scss')
   .pipe(sass({ style: 'expanded' }))
   .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
   .pipe(concat('all.css'))
@@ -23,6 +25,17 @@ gulp.task('css', function () {
   .pipe(minifycss())
   .pipe(gulp.dest('dist/css'));
 });
+
+gulp.task('header_css', function(){
+  gulp.src('src/sass/header/**/*.scss')
+  .pipe(sass({style: 'expanded'}))
+  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+  .pipe(concat('header.css'))
+  .pipe(gulp.dest('dist/css'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(minifycss())
+  .pipe(gulp.dest('dist/css'));
+})
 
 
 gulp.task('javascript', function(){
@@ -33,7 +46,7 @@ gulp.task('javascript', function(){
   .pipe(gulp.dest('dist/js'))
   .pipe(uglify())
   .pipe(rename({suffix: '.min'}))
-  .pipe(gulp.dest('dist/js'))
+  .pipe(gulp.dest('dist/js'));
 });
 
 

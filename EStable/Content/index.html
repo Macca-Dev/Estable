@@ -4,6 +4,8 @@
         <meta name="viewport" content="width=device-width" />
         <title>EStable</title>
         <link href="Layout.css" rel="stylesheet" />
+        <link href="dist/css/header.css" rel="stylesheet" />
+        <link href="dist/css/all.css" rel="stylesheet" />
         <script src="src/vendor/angular/angular.min.js"></script>
         <script src="src/vendor/angular/angular-route.min.js"></script>
         <!--TODO : Work out why the below scripts need to be in the layout, they should be able to be pulled out into the specific html file the are meant for, ie email.html.. I think...
@@ -12,15 +14,11 @@
     </head>
     <body ng-controller="BaseController">
         <header>
-            <div id="header">
-                <div class="header-wrapper">
-                    <div class="float-left">
-                        <p class="page-title">{{ title }}</p>
-                    </div>
-                    <div class="email-in-header">
-                        {{ user.email }}
-                    </div>
-                    <div class="help">help</div>
+            <div class="header-wrapper">
+                <div class="help">help</div>
+                <p class="page-title">{{ title }}</p>
+                <div class="email-in-header">
+                    {{ user.email }}
                 </div>
             </div>
         </header>
