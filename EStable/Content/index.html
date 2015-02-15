@@ -1,0 +1,33 @@
+﻿<html ng-app="wizard">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>EStable</title>
+        <link href="Layout.css" rel="stylesheet" />
+        <script src="src/vendor/angular/angular.min.js"></script>
+        <script src="src/vendor/angular/angular-route.min.js"></script>
+        <!--TODO : Work out why the below scripts need to be in the layout, they should be able to be pulled out into the specific html file the are meant for, ie email.html.. I think... 
+            in fact wizard.js probably does belong in this layout. MEH! I dunno, I'm going to sleep-->
+        <script src="src/js/Wizard.js"></script>
+        <script src="src/js/controllers/WizardEmailControllerjs.js"></script>
+        <script src="src/js/controllers/BaseController.js"></script>
+    </head>
+    <body ng-controller="BaseController">
+        <header>
+            <div id="header">
+                <div class="header-wrapper">
+                    <div class="float-left">
+                        <p class="page-title">{{ title }}</p>
+                    </div>
+                    <div class="email-in-header">
+                        {{ user.email }}
+                    </div>
+                    <div class="help">help</div>
+                </div>
+            </div>
+        </header>
+        <div class="buffer"></div>
+        <div ng-view></div>
+        <footer></footer>
+    </body>
+</html>
