@@ -16,9 +16,9 @@ namespace Wizard.Api.Controllers
         // POST api/values
         public void Post([FromUri] string email)
         {
-            var fileName = "aed6d8de-9932-4c58-ac0e-924ff73acb07.xml";
+            var fileName = "email-aed6d8de-9932-4c58-ac0e-924ff73acb07.json";
 
-
+            _emailService.StoreEmail(fileName, email);
         }
 
         // PUT api/values/5
