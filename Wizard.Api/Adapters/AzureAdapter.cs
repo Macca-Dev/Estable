@@ -54,7 +54,7 @@ namespace Wizard.Api.Adapters
             var blobClient = account.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference(Codes.Azure.Containers.WizardModel);
 
-            await container.CreateIfNotExistsAsync();
+            container.CreateIfNotExists();
             return container;
         }
     }
