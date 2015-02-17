@@ -14,9 +14,10 @@ namespace Wizard.Api.Controllers
         }
 
         // POST api/values
+        [HttpPost]
         public void Post([FromUri] string email)
         {
-            var fileName = "email-aed6d8de-9932-4c58-ac0e-924ff73acb07.json";
+            var fileName = "email-E8067D9D-24EE-4E63-BEF2-8FD4C3BFA279.json";
 
             _emailService.StoreEmail(fileName, email);
         }
