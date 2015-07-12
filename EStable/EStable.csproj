@@ -107,9 +107,9 @@
     <Content Include="Content\Images\Buffer.jpg" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\legacy.css" />
-    <None Include="Content\src\sass\test.scss" />
     <Content Include="Content\src\js\controllers\BaseController.js" />
-    <Content Include="Content\src\js\controllers\WizardEmailControllerjs.js" />
+    <Content Include="Content\src\js\controllers\WizardEmailController.js" />
+    <Content Include="Content\src\js\services\WizardApi.js" />
     <Content Include="Content\src\js\Wizard.js" />
     <Content Include="Content\src\vendor\angular\angular-route.js" />
     <Content Include="Content\src\vendor\angular\angular-route.min.js" />
@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\src\sass\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
