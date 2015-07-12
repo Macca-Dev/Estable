@@ -51,7 +51,7 @@ gulp.task('javascript', function(){
 
 
 gulp.task('clean', function() {
-  return gulp.src(['dist/css', 'dist/js'], {read: false})
+  return gulp.src(['dist/js'], {read: false})
   .pipe(clean());
 });
 
@@ -70,5 +70,5 @@ gulp.task('watch', function () {
 
 //*****DEFAULT****//
 gulp.task('default', ['clean'], function() {
-    gulp.start('css', 'javascript');
+    gulp.start('javascript');
 });
