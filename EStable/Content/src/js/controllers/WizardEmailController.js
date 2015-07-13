@@ -17,5 +17,5 @@
     };
     
     var wizard = angular.module("wizard");
-    wizard.controller("WizardEmailController", ["$scope", WizardEmailController]);
+    wizard.controller("WizardEmailController", ["$scope", "wizardApi", WizardEmailController]);
 }());
