@@ -3,7 +3,7 @@
     var wizardApi = function($http) {
 
         var postEmail = function (email) {
-            return $http.post("http://wizard.service/email/Post/" + email)
+            return $http.post("http://establewizardapi.azurewebsites.net/email/Post/" + email)
                 .then(function(response) {
                     return response.data;
                 });
