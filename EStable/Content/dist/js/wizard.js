@@ -16,29 +16,62 @@
     });
 }());
 
+(function() {
+    "use strict";
+    var wizard = angular.module("wizard"),
+    wizardApi = function($http) {
+        var postStable = function (data) {
+            //return $http.post("http://establewizardapi.azurewebsites.net/stable", data);
+                // .then(function(response) {
+                //     return response.data;
+                // });
+
+
+        return $http({
+            url: "http://establewizardapi.azurewebsites.net/stable",
+            method: "POST",
+            data: JSON.stringify(data),
+            withCredentials: true
+          });
+        };
+
+        return {
+            postStable: postStable
+        };
+    };
+    wizard.factory("wizardApi", wizardApi);
+    wizard.config(function($httpProvider) {
+      //Enable cross domain calls
+      $httpProvider.defaults.useXDomain = true;
+    });
+}());
+
 (function () {
     "use strict";
     var wizard = angular.module("wizard"),
-    BaseController = function ($scope) {
-        var stable = {
-            stableName: ""
-        },user = {
-            email : "fake@me.com"
+    BaseController = function ($scope, $rootScope) {
+        var user = {
+            email : ""
         };
-
-        $scope.stableName = stable;
-        $scope.user = user;
+        
+        $rootScope.user = user;
         $scope.title = "eStable Creation";
     };
 
-    wizard.controller("BaseController", ["$scope", BaseController]);
+    wizard.controller("BaseController", ["$scope", "$rootScope", BaseController]);
 }());
 
 (function(){
   "use strict";
       var wizard = angular.module("wizard"),
-      wizardStableController = function($scope){
-        var stable = {
+      wizardStableController = function($scope, $rootScope, wizardApi){
+        var onPostStableComplete = function(data) {
+            console.log("data", data);
+        },
+        onError = function(reason) {
+            console.log("reason", reason);
+        },
+        stable = {
           racingCode: "",
           trainer: "",
           legalEntity: "",
@@ -55,48 +88,30 @@
        $scope.phone = stable.phone;
        $scope.fax = stable.fax;
        $scope.address = stable.address;
+       $scope.email = $rootScope.user.email;
+       $scope.stableName = stable.stableName;
+
+       $scope.postStable = function(stable) {
+         stable.email = $rootScope.user.email;
+         stable.stableName = "kashdkjashd";
+         //var data = JSON.stringify(stable);
+         wizardApi.postStable(stable)
+          .then(onPostStableComplete, onError);
+        };
+
       };
-      wizard.controller("wizardStableController", ["$scope", wizardStableController]);
+      wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
 }());
 
 (function () {
   "use strict";
     var wizard = angular.module("wizard"),
-    wizardEmailController = function($scope) {
+    wizardEmailController = function($scope, $rootScope, $location) {
 
-        $scope.emailLabel = 'Email: ';
-        $scope.submitEmail = function(email) {
-          //wizardMemory.storeEmail(email)
-            //    .then(onStoreEmailComplete, onError);
-        };
-
-        var onStoreEmailComplete = function(data) {
-            console.log(data);
-        };
-
-        var onError = function(reason) {
-            console.log(reason);
+        $scope.storeEmail = function(email) {
+          $location.path('/stable');
+          $rootScope.user.email = email;
         };
     };
-    wizard.controller("wizardEmailController", ["$scope", wizardEmailController]);
-}());
-
-(function() {
-
-    var wizardApi = function($http) {
-
-      //change this to be post stable
-        var postEmail = function (email) {
-            return $http.post("http://establewizardapi.azurewebsites.net/email/Post/" + email)
-                .then(function(response) {
-                    return response.data;
-                });
-        };
-
-        return {
-            postEmail: postEmail
-        };
-    },
-    wizard = angular.module("wizard");
-    wizard.factory("wizardApi", wizardApi);
+    wizard.controller("wizardEmailController", ["$scope", "$rootScope", "$location", wizardEmailController]);
 }());
