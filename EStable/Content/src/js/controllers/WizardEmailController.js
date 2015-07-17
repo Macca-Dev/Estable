@@ -1,13 +1,15 @@
 ﻿(function () {
-    var WizardEmailController = function($scope, wizardApi) {
+  "use strict";
+    var wizard = angular.module("wizard"),
+    wizardEmailController = function($scope) {
 
         $scope.emailLabel = 'Email: ';
         $scope.submitEmail = function(email) {
-            wizardApi.postEmail(email)
-                .then(onPostEmailComplete, onError);
+          //wizardMemory.storeEmail(email)
+            //    .then(onStoreEmailComplete, onError);
         };
 
-        var onPostEmailComplete = function(data) {
+        var onStoreEmailComplete = function(data) {
             console.log(data);
         };
 
@@ -15,7 +17,5 @@
             console.log(reason);
         };
     };
-    
-    var wizard = angular.module("wizard");
-    wizard.controller("WizardEmailController", ["$scope", "wizardApi", WizardEmailController]);
+    wizard.controller("wizardEmailController", ["$scope", wizardEmailController]);
 }());
