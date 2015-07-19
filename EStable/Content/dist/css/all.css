@@ -40,12 +40,12 @@ footer {
 }
 
 .content {
-  padding-bottom: 80px;
+  margin-bottom: 80px;
 }
 
 .form-group {
   margin-bottom: 10px;
 }
-.form-group .form-control {
+.form-group input.form-control {
   height: 25px;
 }

@@ -100,7 +100,7 @@
         return $http({
             url: "http://establewizardapi.azurewebsites.net/stable",
             method: "POST",
-            data: JSON.stringify(data),
+            data: data,
             withCredentials: true
           });
         };
