@@ -1,21 +1,12 @@
 ﻿(function () {
-    var WizardEmailController = function($scope, wizardApi) {
+  "use strict";
+    var wizard = angular.module("wizard"),
+    wizardEmailController = function($scope, $rootScope, $location) {
 
-        $scope.emailLabel = 'Email: ';
-        $scope.submitEmail = function(email) {
-            wizardApi.postEmail(email)
-                .then(onPostEmailComplete, onError);
-        };
-
-        var onPostEmailComplete = function(data) {
-            console.log(data);
-        };
-
-        var onError = function(reason) {
-            console.log(reason);
+        $scope.storeEmail = function(email) {
+          $location.path('/stable');
+          $rootScope.user.email = email;
         };
     };
-    
-    var wizard = angular.module("wizard");
-    wizard.controller("WizardEmailController", ["$scope", "wizardApi", WizardEmailController]);
+    wizard.controller("wizardEmailController", ["$scope", "$rootScope", "$location", wizardEmailController]);
 }());

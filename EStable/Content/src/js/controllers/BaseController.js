@@ -1,19 +1,14 @@
 ﻿(function () {
-    var BaseController = function ($scope) {
-
-        var stable = {
-            stableName: ""
-        };
-
+    "use strict";
+    var wizard = angular.module("wizard"),
+    BaseController = function ($scope, $rootScope) {
         var user = {
-            email : "fake@me.com"
+            email : ""
         };
-
-        $scope.stableName = stable;
-        $scope.user = user;
+        
+        $rootScope.user = user;
         $scope.title = "eStable Creation";
     };
 
-    var wizard = angular.module("wizard");
-    wizard.controller("BaseController", ["$scope", BaseController]);
+    wizard.controller("BaseController", ["$scope", "$rootScope", BaseController]);
 }());

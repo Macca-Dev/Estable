@@ -6,6 +6,8 @@
         <link href="Layout.css" rel="stylesheet" />
         <link href="dist/css/header.css" rel="stylesheet" />
         <link href="dist/css/all.css" rel="stylesheet" />
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
         <script src="src/vendor/angular/angular.min.js"></script>
         <script src="src/vendor/angular/angular-route.min.js"></script>
         <!--TODO : Work out why the below scripts need to be in the layout, they should be able to be pulled out into the specific html file the are meant for, ie email.html.. I think...
@@ -23,7 +25,7 @@
             </div>
         </header>
         <div class="buffer"></div>
-        <div ng-view></div>
+        <div ng-view class="container-fluid content"></div>
         <footer></footer>
     </body>
 </html>

@@ -6,7 +6,11 @@
         $routeProvider
             .when("/", {
                 templateUrl: "src/views/email.html",
-                controller: "WizardEmailController"
+                controller: "wizardEmailController"
+            })
+            .when("/stable", {
+              templateUrl: "src/views/stable.html",
+              controller: "wizardStableController"
             })
             .otherwise({ redirectTo: "/" });
     });

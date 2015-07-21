@@ -9,6 +9,7 @@
   "author": "Ryan & Jo",
   "license": "ISC",
   "devDependencies": {
+    "bootstrap": "~3.3.5",
     "express": "~4.1.1",
     "connect-livereload": "~0.4.0",
     "tiny-lr": "0.0.5",
