@@ -100,8 +100,7 @@
 
 
         return $http({
-            //url: "http://establewizardapi.azurewebsites.net/stable",
-            url:"http://wizard.service/stable",
+            url: "http://establewizardapi.azurewebsites.net/stable",
             method: "POST",
             data: data
           });
