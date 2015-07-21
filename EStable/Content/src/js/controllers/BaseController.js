@@ -3,7 +3,8 @@
     var wizard = angular.module("wizard"),
     BaseController = function ($scope, $rootScope) {
         var user = {
-            email : ""
+            email : "",
+            stableName: ""
         };
         
         $rootScope.user = user;

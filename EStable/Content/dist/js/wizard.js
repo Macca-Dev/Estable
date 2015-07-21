@@ -16,41 +16,13 @@
     });
 }());
 
-(function() {
-    "use strict";
-    var wizard = angular.module("wizard"),
-    wizardApi = function($http) {
-        var postStable = function (data) {
-            //return $http.post("http://establewizardapi.azurewebsites.net/stable", data);
-                // .then(function(response) {
-                //     return response.data;
-                // });
-
-
-        return $http({
-            url: "http://establewizardapi.azurewebsites.net/stable",
-            method: "POST",
-            data: data
-          });
-        };
-
-        return {
-            postStable: postStable
-        };
-    };
-    wizard.factory("wizardApi", wizardApi);
-    wizard.config(function($httpProvider) {
-      //Enable cross domain calls
-      $httpProvider.defaults.useXDomain = true;
-    });
-}());
-
 (function () {
     "use strict";
     var wizard = angular.module("wizard"),
     BaseController = function ($scope, $rootScope) {
         var user = {
-            email : ""
+            email : "",
+            stableName: ""
         };
         
         $rootScope.user = user;
@@ -66,11 +38,13 @@
       wizardStableController = function($scope, $rootScope, wizardApi){
         var onPostStableComplete = function(data) {
             console.log("data", data);
+            $rootScope.user.stableName = data.config.data.stableName;
         },
         onError = function(reason) {
             console.log("reason", reason);
         },
         stable = {
+          stableName: "",
           racingCode: "",
           trainer: "",
           legalEntity: "",
@@ -91,8 +65,7 @@
        $scope.stableName = stable.stableName;
 
        $scope.postStable = function(stable) {
-         stable.email = $rootScope.user.email;
-         stable.stableName = "kashdkjashd";
+         stable.stableEmail = $rootScope.user.email;
          //var data = JSON.stringify(stable);
          wizardApi.postStable(stable)
           .then(onPostStableComplete, onError);
@@ -113,4 +86,34 @@
         };
     };
     wizard.controller("wizardEmailController", ["$scope", "$rootScope", "$location", wizardEmailController]);
+}());
+
+(function() {
+    "use strict";
+    var wizard = angular.module("wizard"),
+    wizardApi = function($http) {
+        var postStable = function (data) {
+            //return $http.post("http://establewizardapi.azurewebsites.net/stable", data);
+                // .then(function(response) {
+                //     return response.data;
+                // });
+
+
+        return $http({
+            //url: "http://establewizardapi.azurewebsites.net/stable",
+            url:"http://wizard.service/stable",
+            method: "POST",
+            data: data
+          });
+        };
+
+        return {
+            postStable: postStable
+        };
+    };
+    wizard.factory("wizardApi", wizardApi);
+    wizard.config(function($httpProvider) {
+      //Enable cross domain calls
+      $httpProvider.defaults.useXDomain = true;
+    });
 }());

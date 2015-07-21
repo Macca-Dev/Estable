@@ -4,11 +4,13 @@
       wizardStableController = function($scope, $rootScope, wizardApi){
         var onPostStableComplete = function(data) {
             console.log("data", data);
+            $rootScope.user.stableName = data.config.data.stableName;
         },
         onError = function(reason) {
             console.log("reason", reason);
         },
         stable = {
+          stableName: "",
           racingCode: "",
           trainer: "",
           legalEntity: "",
@@ -29,8 +31,7 @@
        $scope.stableName = stable.stableName;
 
        $scope.postStable = function(stable) {
-         stable.email = $rootScope.user.email;
-         stable.stableName = "kashdkjashd";
+         stable.stableEmail = $rootScope.user.email;
          //var data = JSON.stringify(stable);
          wizardApi.postStable(stable)
           .then(onPostStableComplete, onError);
