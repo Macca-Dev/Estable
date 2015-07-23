@@ -74,12 +74,12 @@ IF /I "EStable.sln" NEQ "" (
 )
 
 :: 2. Run NPM
-GULP="content/node_modules/gulp/bin/gulp.js"
+:: GULP="content/node_modules/gulp/bin/gulp.js"
 
-echo "Running gulp..."
-"$GULP" production
-exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
-echo "Finished gulp."
+:: echo "Running gulp..."
+:: "$GULP" production
+:: exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
+:: echo "Finished gulp."
 
 :: 3. Build to the temporary path
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
