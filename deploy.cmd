@@ -74,7 +74,7 @@ IF /I "EStable.sln" NEQ "" (
 )
 
 :: 2. Run NPM
-eval $NPM_CMD install
+$NPM_CMD install
 GULP="content/node_modules/gulp/bin/gulp.js"
 
 :: echo "Running gulp..."
