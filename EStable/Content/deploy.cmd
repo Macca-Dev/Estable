@@ -78,10 +78,10 @@ npm prune --prefix .\EStable\Content
 npm install --prefix .\EStable\Content
 GULP="content/node_modules/gulp/bin/gulp.js"
 
-echo "Running gulp..."
+echo Running gulp...
 "$GULP" --cwd estable\content
 exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
-echo "Finished gulp."
+echo Finished gulp.
 
 :: 3. Build to the temporary path
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
