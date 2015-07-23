@@ -74,7 +74,8 @@ IF /I "EStable.sln" NEQ "" (
 )
 
 :: 2. Run NPM
-npm install estable\content
+npm prune
+npm install --prefix .\EStable\Content
 GULP="content/node_modules/gulp/bin/gulp.js"
 
 echo "Running gulp..."
