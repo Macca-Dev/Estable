@@ -76,9 +76,8 @@ IF /I "EStable.sln" NEQ "" (
 echo output something?
 
 :: 2. Run NPM
-npm prune --prefix .\EStable\Content
-echo output something else?
 npm install --prefix .\EStable\Content
+echo output something else?
 GULP="estable/content/node_modules/gulp/bin/gulp.js"
 
 echo Running gulp...
