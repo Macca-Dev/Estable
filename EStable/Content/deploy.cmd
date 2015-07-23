@@ -78,7 +78,7 @@ npm install estable\content
 GULP="content/node_modules/gulp/bin/gulp.js"
 
 echo "Running gulp..."
-"$GULP" production
+"$GULP" --cwd estable\content
 exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
 echo "Finished gulp."
 
