@@ -1,2 +1,2 @@
 [config]
-command = "content\deploy.cmd"
+command = Estable\Content\deploy.cmd
