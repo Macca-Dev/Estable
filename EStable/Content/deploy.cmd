@@ -77,7 +77,7 @@ echo output something?
 
 :: 2. Run NPM
 npm install --prefix .\EStable\Content
-echo output something else?
+echo output something else
 GULP="estable/content/node_modules/gulp/bin/gulp.js"
 
 echo Running gulp...
