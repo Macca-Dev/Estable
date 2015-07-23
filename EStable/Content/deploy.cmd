@@ -73,10 +73,12 @@ IF /I "EStable.sln" NEQ "" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
+echo output something?
+
 :: 2. Run NPM
 npm prune --prefix .\EStable\Content
 npm install --prefix .\EStable\Content
-GULP="content/node_modules/gulp/bin/gulp.js"
+GULP="estable/content/node_modules/gulp/bin/gulp.js"
 
 echo Running gulp...
 "$GULP" --cwd estable\content
