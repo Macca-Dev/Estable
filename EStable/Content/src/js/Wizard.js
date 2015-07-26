@@ -1,5 +1,5 @@
 ﻿(function() {
-    var wizard = angular.module("wizard", ["ngRoute", "xeditable"]);
+    var wizard = angular.module("wizard", ["ngRoute"]);
 
     wizard.config(function($routeProvider) {
 
@@ -16,6 +16,10 @@
               templateUrl: "src/views/financial.html",
               controller: "wizardFinancialController"
             })
+            /*.when("/charge", {
+              templateUrl: "src/views/charge.html",
+              controller: "wizardChargeController"
+            })*/
             .otherwise({ redirectTo: "/" });
     });
 }());

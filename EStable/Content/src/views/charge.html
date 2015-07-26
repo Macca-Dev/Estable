@@ -1,5 +1,4 @@
 <div class="row">
-<div ng-app="app" ng-controller="Ctrl">
    <table class="table table-bordered table-hover table-condensed">
     <tr style="font-weight: bold">
       <td style="width:35%">Description</td>
@@ -10,7 +9,7 @@
     <tr ng-repeat="user in users">
       <td>
         <!-- editable username (text with validation) -->
-        <span editable-text="charge.description" e-name="name" e-form="rowform" onbeforesave="checkName($data, user.id)" e-required>
+        <span editable-text="charge.description" e-name="name" e-form="rowform" onbeforesave="validateDescription($data, user.id)" e-required>
           {{ user.name || 'empty' }}
         </span>
       </td>
@@ -45,5 +44,4 @@
   </table>
 
   <button class="btn btn-default" ng-click="addUser()">Add row</button>
-</div>
 </div>
