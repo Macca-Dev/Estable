@@ -1,13 +1,40 @@
 <div class="row">
   <form name="stableForm" ng-submit="postStable(stable)" class="stable-form col-md-6 col-md-offset-3">
      <div class="form-group">
-       <input type="submit" value="Submit" class="btn btn-default"/>
        <label>Stable Name</label>
        <input ng-model="stable.stableName" type="text" class="stable-name-field form-control"/>
      </div>
      <div class="form-group">
-        <label>Racing Code</label>
-        <input ng-model="stable.racingCode" type="text" class="racing-code-field form-control"/>
+        <div class="radio">
+          <label>
+            <input ng-model="stable.racingCode" type="radio" name="racingCode" id="optionsRadios1" value="Gallops">
+            Gallops
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios2" value="Greyhound">
+            Greyhound
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Harness">
+            Harness
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Thoroughbred">
+            Thoroughbred
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Other">
+            Other
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <label>Trainer</label>
@@ -31,7 +58,10 @@
       </div>
      <div class="form-group">
       <label>Address</label>
-      <textarea ng-model="stable.address" class="address-field form-control"/>
+      <textarea ng-model="stable.address" class="address-field form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Submit" class="btn btn-default"/>
     </div>
   </form>
 </div>

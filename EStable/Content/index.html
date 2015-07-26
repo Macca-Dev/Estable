@@ -8,8 +8,11 @@
         <link href="dist/css/all.css" rel="stylesheet" />
         <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
         <script src="src/vendor/angular/angular.min.js"></script>
         <script src="src/vendor/angular/angular-route.min.js"></script>
+        <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
         <!--TODO : Work out why the below scripts need to be in the layout, they should be able to be pulled out into the specific html file the are meant for, ie email.html.. I think...
             in fact wizard.js probably does belong in this layout. MEH! I dunno, I'm going to sleep-->
         <script src="dist/js/wizard.js"></script>
@@ -26,6 +29,6 @@
         </header>
         <div class="buffer"></div>
         <div ng-view class="container-fluid content"></div>
-        <footer></footer>
+        <!--<footer></footer>-->
     </body>
 </html>

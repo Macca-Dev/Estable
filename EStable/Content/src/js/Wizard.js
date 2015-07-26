@@ -12,6 +12,14 @@
               templateUrl: "src/views/stable.html",
               controller: "wizardStableController"
             })
+            .when("/financial", {
+              templateUrl: "src/views/financial.html",
+              controller: "wizardFinancialController"
+            })
+            /*.when("/charge", {
+              templateUrl: "src/views/charge.html",
+              controller: "wizardChargeController"
+            })*/
             .otherwise({ redirectTo: "/" });
     });
 }());

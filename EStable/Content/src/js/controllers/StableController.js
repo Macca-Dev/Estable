@@ -1,14 +1,15 @@
 (function(){
   "use strict";
       var wizard = angular.module("wizard"),
+      onError = function(reason) {
+          console.log("reason", reason);
+      },
       wizardStableController = function($scope, $rootScope, wizardApi){
         var onPostStableComplete = function(data) {
             console.log("data", data);
             $rootScope.user.stableName = data.config.data.stableName;
         },
-        onError = function(reason) {
-            console.log("reason", reason);
-        },
+
         stable = {
           stableName: "",
           racingCode: "",
@@ -34,7 +35,7 @@
          stable.stableEmail = $rootScope.user.email;
          //var data = JSON.stringify(stable);
          wizardApi.postStable(stable)
-          .then(onPostStableComplete, onError);
+          .then(onPostStableComplete, this.onError);
         };
 
       };
