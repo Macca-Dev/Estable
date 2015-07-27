@@ -2,63 +2,63 @@
   <form name="stableForm" ng-submit="postStable(stable)" class="stable-form col-md-6 col-md-offset-3">
      <div class="form-group">
        <label>Stable Name</label>
-       <input ng-model="stable.stableName" type="text" class="stable-name-field form-control"/>
+       <input ng-model="stable.StableName" type="text" class="stable-name-field form-control" />
      </div>
      <div class="form-group">
         <div class="radio">
           <label>
-            <input ng-model="stable.racingCode" type="radio" name="racingCode" id="optionsRadios1" value="Gallops">
+            <input ng-model="stable.RacingCode" type="radio" name="RacingCode" value="Gallops">
             Gallops
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios2" value="Greyhound">
+            <input type="radio"  ng-model="stable.RacingCode" name="RacingCode" value="Greyhound">
             Greyhound
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Harness">
+            <input type="radio"  ng-model="stable.RacingCode" name="RacingCode" value="Harness">
             Harness
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio"  ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Thoroughbred">
+            <input type="radio"  ng-model="stable.RacingCode" name="RacingCode" value="Thoroughbred">
             Thoroughbred
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" ng-model="stable.racingCode" name="racingCode" id="optionsRadios3" value="Other">
+            <input type="radio" ng-model="stable.RacingCode" name="RacingCode" value="Other">
             Other
           </label>
         </div>
       </div>
       <div class="form-group">
         <label>Trainer</label>
-        <input ng-model="stable.trainer" type="text" class="trainer-field form-control"/>
+        <input ng-model="stable.Trainer" type="text" class="trainer-field form-control"/>
       </div>
       <div class="form-group">
         <label>Legal Entity</label>
-        <input ng-model="stable.legalEntity" type="text" class="legal-entity-field form-control"/>
+        <input ng-model="stable.LegalEntity" type="text" class="legal-entity-field form-control"/>
       </div>
        <div class="form-group">
         <label>Mobile</label>
-        <input ng-model="stable.mobile" type="text" class="mobile-field form-control"/>
+        <input ng-model="stable.Mobile" type="text" class="mobile-field form-control"/>
       </div>
        <div class="form-group">
         <label>Phone</label>
-        <input ng-model="stable.phone" type="text" class="phone-field form-control"/>
+        <input ng-model="stable.Phone" type="text" class="phone-field form-control"/>
       </div>
        <div class="form-group">
         <label>Fax</label>
-        <input ng-model="stable.fax" type="text" class="fax-field form-control"/>
+        <input ng-model="stable.Fax" type="text" class="fax-field form-control"/>
       </div>
      <div class="form-group">
       <label>Address</label>
-      <textarea ng-model="stable.address" class="address-field form-control"></textarea>
+      <textarea ng-model="stable.Address" class="address-field form-control"></textarea>
     </div>
     <div class="form-group">
       <input type="submit" value="Submit" class="btn btn-default"/>
