@@ -6,7 +6,7 @@
         "js/motion.js",
         "sass/motion.scss"
     ],
-    "devDependencies": {
+    "dependencies": {
         "angular-xeditable": "~0.1.9"
     },
     "moduleType": [
