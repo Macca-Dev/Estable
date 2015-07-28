@@ -1,28 +1,28 @@
 {
-  "name": "esatble",
-  "version": "0.0.1",
-  "description": "Physics-like animations for pretty particles",
-  "main": [
-    "js/motion.js",
-    "sass/motion.scss"
-  ],
-  "devDependencies": {
-    "angular-xeditable": "~0.1.9",
-  },
-  "moduleType": [
-    "amd",
-    "globals",
-    "node"
-  ],
-  "authors": [
-    "Fay & Ryan"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+    "name": "estable",
+    "version": "0.0.1",
+    "description": "Physics-like animations for pretty particles",
+    "main": [
+        "js/motion.js",
+        "sass/motion.scss"
+    ],
+    "devDependencies": {
+        "angular-xeditable": "~0.1.9"
+    },
+    "moduleType": [
+        "amd",
+        "globals",
+        "node"
+    ],
+    "authors": [
+        "Fay & Ryan"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
 }
