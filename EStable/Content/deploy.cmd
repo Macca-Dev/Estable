@@ -77,7 +77,13 @@ echo output something?
 
 :: 2. Run NPM
 npm install --prefix .\EStable\Content
-bower install --config.cwd=EStable\Content\
+if [ -e "$DEPLOYMENT_SOURCE\EStable\Content\bower.json" ]; then
+  eval $NPM_CMD install bower
+  exitWithMessageOnError "installing bower failed"
+  ./node_modules/.bin/bower install
+  exitWithMessageOnError "bower failed"
+fi
+
 echo output something else
 GULP="%DEPLOYMENT_SOURCE%\EStable\Content\node_modules\gulp\bin\gulp.js"
 
