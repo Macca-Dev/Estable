@@ -77,8 +77,9 @@ echo output something?
 
 :: 2. Run NPM
 npm install --prefix .\EStable\Content
+bower install --prefix .\EStable\Content
 echo output something else
-GULP="estable/content/node_modules/gulp/bin/gulp.js"
+GULP="%DEPLOYMENT_SOURCE%\EStable\Content\node_modules\gulp\bin\gulp.js"
 
 echo Running gulp...
 "$GULP" --cwd estable\content
