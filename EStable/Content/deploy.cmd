@@ -89,9 +89,12 @@ IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\package.json" (
 :: npm install --prefix .\EStable\Content
 :: bower install --config.cwd=EStable\Content\
 
+echo about to run bower
  IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\bower.json" (
+  echo bower.json exists
   pushd "%DEPLOYMENT_SOURCE%\EStable\Content"
   call :ExecuteCmd bower install
+  echo just ran bower
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
