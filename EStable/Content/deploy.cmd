@@ -74,6 +74,7 @@ IF /I "EStable.sln" NEQ "" (
 )
 
 echo about to run npm
+echo %DEPLOYMENT_TARGET%
 
 :: 2. Run NPM
 IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
