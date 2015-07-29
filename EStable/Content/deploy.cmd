@@ -69,7 +69,7 @@ echo Handling .NET Web Application deployment.
 
 :: 1. Restore NuGet packages
 IF /I "EStable.sln" NEQ "" (
-  call :ExecuteCmd nuget restore "%DEPLOYMENT_TARGET%\EStable.sln"
+  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\EStable.sln"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
