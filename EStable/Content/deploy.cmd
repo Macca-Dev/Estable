@@ -76,7 +76,7 @@ IF /I "EStable.sln" NEQ "" (
 echo output something?
 
 :: 2. Run NPM
-npm install --prefix .\EStable\Content
+:: npm install --prefix .\EStable\Content
 :: bower install --config.cwd=EStable\Content\
 
 :: IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
