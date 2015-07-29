@@ -79,12 +79,12 @@ echo output something?
 npm install --prefix .\EStable\Content
 :: bower install --config.cwd=EStable\Content\
 
-IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
-  call :ExecuteCmd bower install
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
+:: IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
+::  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+::  call :ExecuteCmd bower install
+::  IF !ERRORLEVEL! NEQ 0 goto error
+::  popd
+::)
 
 echo output something else
 
