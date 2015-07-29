@@ -1,28 +1,27 @@
 {
-    "name": "estable",
-    "version": "0.0.1",
-    "description": "Physics-like animations for pretty particles",
-    "main": [
-        "js/motion.js",
-        "sass/motion.scss"
-    ],
-    "dependencies": {
-        "angular-xeditable": "~0.1.9"
-    },
-    "moduleType": [
-        "amd",
-        "globals",
-        "node"
-    ],
-    "authors": [
-        "Fay & Ryan"
-    ],
-    "license": "MIT",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ]
+  "name": "estable",
+  "version": "0.0.1",
+  "authors": [
+    "Fay & Ryan"
+  ],
+  "description": "estable bower package",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "estable"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.x",
+    "angular-xeditable": "~0.1.9"
+  }
 }
