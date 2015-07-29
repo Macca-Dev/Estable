@@ -73,9 +73,18 @@ IF /I "EStable.sln" NEQ "" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-echo output something?
+echo about to run npm
 
 :: 2. Run NPM
+IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
+  echo package.json exists
+  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+  call :ExecuteCmd npm install
+  echo just ran npm install
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+  )
+  
 :: npm install --prefix .\EStable\Content
 :: bower install --config.cwd=EStable\Content\
 
