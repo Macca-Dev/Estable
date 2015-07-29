@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-  sass = require('gulp-ruby-sass'),
+  //sass = require('gulp-ruby-sass'),
   shell = require('gulp-shell'),
   watch = require('gulp-watch'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -68,6 +68,6 @@ gulp.task('watch', function () {
 });
 
 //*****DEFAULT****//
-gulp.task('default', ['clean', 'css'], function() {
+gulp.task('default', ['clean', /*'css'*/], function() {
     gulp.start('javascript');
 });
