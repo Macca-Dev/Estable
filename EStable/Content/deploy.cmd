@@ -95,9 +95,9 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 )
 
 :: 2. Run NPM
-IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
+IF EXIST "%DEPLOYMENT_TARGET%\Content\package.json" (
   echo package.json exists
-  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+  pushd "%DEPLOYMENT_TARGET%\Content"
   call :ExecuteCmd npm install
   echo just ran npm install
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -108,9 +108,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
 :: bower install --config.cwd=EStable\Content\
 
 echo about to run bower
- IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
+ IF EXIST "%DEPLOYMENT_TARGET%\Content\bower.json" (
   echo bower.json exists
-  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+  pushd "%DEPLOYMENT_TARGET%\Content"
   call :ExecuteCmd bower install
   echo just ran bower
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -119,7 +119,7 @@ echo about to run bower
 
 echo output something else
 
-::GULP="%DEPLOYMENT_TARGET%\EStable\Content\node_modules\gulp\bin\gulp.js"
+::GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
 
 ::echo Running gulp...
 ::"$GULP" --cwd estable\content
