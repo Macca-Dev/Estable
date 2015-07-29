@@ -73,13 +73,7 @@ IF /I "EStable.sln" NEQ "" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-echo about to run npm
-echo %DEPLOYMENT_SOURCE%
-echo %DEPLOYMENT_TARGET%
-
-
-
-:: 3. Build to the temporary path
+:: 2. Build to the temporary path
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\EStable\EStable.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
 ) ELSE (
@@ -88,13 +82,13 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
-:: 4. KuduSync
+:: 3. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 2. Run NPM
+:: 4. Run NPM
 IF EXIST "%DEPLOYMENT_TARGET%\Content\package.json" (
   echo package.json exists
   pushd "%DEPLOYMENT_TARGET%\Content"
@@ -103,10 +97,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\Content\package.json" (
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
   )
-  
-:: npm install --prefix .\EStable\Content
-:: bower install --config.cwd=EStable\Content\
 
+:: 5. Run bower
 echo about to run bower
  IF EXIST "%DEPLOYMENT_TARGET%\Content\bower.json" (
   echo bower.json exists
@@ -117,22 +109,13 @@ echo about to run bower
   popd
 )
 
-::IF EXISTS "%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js" (
-  pushd "%DEPLOYMENT_TARGET%\Content"
-  call :ExecuteCmd gulp
-  echo Gulped MOFO.
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-::)
-::echo output something else
+:: 6. Run gulp
+pushd "%DEPLOYMENT_TARGET%\Content"
+call :ExecuteCmd gulp
+echo Gulped MOFO.
+IF !ERRORLEVEL! NEQ 0 goto error
+popd
 
-::SET GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
-
-::echo Running gulp...
-::%GULP% --cwd estable\content
-::IF !ERRORLEVEL! NEQ 0 goto error
-:: exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
-echo Finished gulp.
 echo fin.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
