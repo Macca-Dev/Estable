@@ -11,16 +11,7 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
-  cache = require('gulp-cache'), //we should use this but can add it later on
-  bower = require('bower');
-
-gulp.task('bower', function(cb){
-  bower.commands.install([], {save: true}, {})
-    .on('end', function(installed){
-      cb();
-    })
-});
-
+  cache = require('gulp-cache'); //we should use this but can add it later on
 
 gulp.task('css', function () {
   gulp.start('header_css');
