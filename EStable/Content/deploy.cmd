@@ -117,7 +117,7 @@ echo about to run bower
   popd
 )
 
-IF EXISTS "%DEPLOYMENT_TARGET%\Content\gulpfile.js" (
+IF EXISTS "%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js" (
   pushd "%DEPLOYMENT_TARGET%\Content"
   call :ExecuteCmd gulp
   echo Gulped MOFO.
