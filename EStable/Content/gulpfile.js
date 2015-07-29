@@ -77,6 +77,6 @@ gulp.task('watch', function () {
 });
 
 //*****DEFAULT****//
-gulp.task('default', ['clean', 'css', 'bower'], function() {
+gulp.task('default', ['clean', 'css'], function() {
     gulp.start('javascript');
 });
