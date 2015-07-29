@@ -11,7 +11,15 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
-  cache = require('gulp-cache'); //we should use this but can add it later on
+  cache = require('gulp-cache'), //we should use this but can add it later on
+  bower = require('bower');
+
+gulp.task('bower', function(cb){
+  bower.commands.install([], {save: true}, {})
+    .on('end', function(installed){
+      cb();
+    })
+});
 
 
 gulp.task('css', function () {
@@ -69,6 +77,6 @@ gulp.task('watch', function () {
 });
 
 //*****DEFAULT****//
-gulp.task('default', ['clean', 'css'], function() {
+gulp.task('default', ['clean', 'css', 'bower'], function() {
     gulp.start('javascript');
 });
