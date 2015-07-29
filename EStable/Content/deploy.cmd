@@ -75,6 +75,24 @@ IF /I "EStable.sln" NEQ "" (
 
 echo about to run npm
 echo %DEPLOYMENT_SOURCE%
+echo %DEPLOYMENT_TARGET%
+
+
+
+:: 3. Build to the temporary path
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\EStable\EStable.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+) ELSE (
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\EStable\EStable.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+)
+
+IF !ERRORLEVEL! NEQ 0 goto error
+
+:: 4. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
 
 :: 2. Run NPM
 IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
@@ -101,28 +119,13 @@ echo about to run bower
 
 echo output something else
 
-GULP="%DEPLOYMENT_TARGET%\EStable\Content\node_modules\gulp\bin\gulp.js"
+::GULP="%DEPLOYMENT_TARGET%\EStable\Content\node_modules\gulp\bin\gulp.js"
 
-echo Running gulp...
-"$GULP" --cwd estable\content
-exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
-echo Finished gulp.
-
-:: 3. Build to the temporary path
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\EStable\EStable.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
-) ELSE (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\EStable\EStable.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
-)
-
-IF !ERRORLEVEL! NEQ 0 goto error
-
-:: 4. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
-
+::echo Running gulp...
+::"$GULP" --cwd estable\content
+::exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
+::echo Finished gulp.
+echo fin.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
