@@ -126,6 +126,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Content\index.html" />
+    <Content Include="Content\bower.json" />
+    <Content Include="Content\package.json" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Content\src\views\email.html" />
     <Content Include="Content\src\vendor\angular\angular.min.js.map" />
