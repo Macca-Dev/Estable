@@ -117,21 +117,21 @@ echo about to run bower
   popd
 )
 
-IF EXISTS "%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js" (
-  pushd "%DEPLOYMENT_TARGET%\Content"
-  call :ExecuteCmd gulp
-  echo Gulped MOFO.
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-  )
-echo output something else
+::IF EXISTS "%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js" (
+::  pushd "%DEPLOYMENT_TARGET%\Content"
+::  call :ExecuteCmd gulp
+::  echo Gulped MOFO.
+::  IF !ERRORLEVEL! NEQ 0 goto error
+::  popd
+::  )
+::echo output something else
 
-::GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
+GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
 
-::echo Running gulp...
-::"$GULP" --cwd estable\content
-::exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
-::echo Finished gulp.
+echo Running gulp...
+"$GULP" --cwd estable\content
+exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
+echo Finished gulp.
 echo fin.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
