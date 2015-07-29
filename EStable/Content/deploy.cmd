@@ -126,10 +126,10 @@ echo about to run bower
 ::  )
 ::echo output something else
 
-GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
+SET GULP="%DEPLOYMENT_TARGET%\Content\node_modules\gulp\bin\gulp.js"
 
 echo Running gulp...
-"$GULP" --cwd estable\content
+%GULP% --cwd estable\content
 exitWithMessageOnError "Could not run 'gulp'.  Did 'npm install' run OK?"
 echo Finished gulp.
 echo fin.
