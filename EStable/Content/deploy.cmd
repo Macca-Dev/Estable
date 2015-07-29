@@ -69,7 +69,7 @@ echo Handling .NET Web Application deployment.
 
 :: 1. Restore NuGet packages
 IF /I "EStable.sln" NEQ "" (
-  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\EStable.sln"
+  call :ExecuteCmd nuget restore "%DEPLOYMENT_TARGET%\EStable.sln"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
@@ -77,9 +77,9 @@ echo about to run npm
 echo %DEPLOYMENT_SOURCE%
 
 :: 2. Run NPM
-IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\package.json" (
+IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
   echo package.json exists
-  pushd "%DEPLOYMENT_SOURCE%\EStable\Content"
+  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
   call :ExecuteCmd npm install
   echo just ran npm install
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -90,9 +90,9 @@ IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\package.json" (
 :: bower install --config.cwd=EStable\Content\
 
 echo about to run bower
- IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\bower.json" (
+ IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
   echo bower.json exists
-  pushd "%DEPLOYMENT_SOURCE%\EStable\Content"
+  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
   call :ExecuteCmd bower install
   echo just ran bower
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -101,7 +101,7 @@ echo about to run bower
 
 echo output something else
 
-GULP="%DEPLOYMENT_SOURCE%\EStable\Content\node_modules\gulp\bin\gulp.js"
+GULP="%DEPLOYMENT_TARGET%\EStable\Content\node_modules\gulp\bin\gulp.js"
 
 echo Running gulp...
 "$GULP" --cwd estable\content
