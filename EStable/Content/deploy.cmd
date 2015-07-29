@@ -77,9 +77,9 @@ echo about to run npm
 echo %DEPLOYMENT_TARGET%
 
 :: 2. Run NPM
-IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
+IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\package.json" (
   echo package.json exists
-  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+  pushd "%DEPLOYMENT_SOURCE%\EStable\Content"
   call :ExecuteCmd npm install
   echo just ran npm install
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -89,8 +89,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\package.json" (
 :: npm install --prefix .\EStable\Content
 :: bower install --config.cwd=EStable\Content\
 
-:: IF EXIST "%DEPLOYMENT_TARGET%\EStable\Content\bower.json" (
-::  pushd "%DEPLOYMENT_TARGET%\EStable\Content"
+:: IF EXIST "%DEPLOYMENT_SOURCE%\EStable\Content\bower.json" (
+::  pushd "%DEPLOYMENT_SOURCE%\EStable\Content"
 ::  call :ExecuteCmd bower install
 ::  IF !ERRORLEVEL! NEQ 0 goto error
 ::  popd
