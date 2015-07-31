@@ -26,7 +26,8 @@ gulp.task('css', function () {
 });
 
 gulp.task('sass', function(){
-  gulp.src('src/sass/*.scss')
+  gulp.start('header_css');
+  return gulp.src('src/sass/*.scss')
   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(concat('all.css'))
   .pipe(gulp.dest('dist/css'));
