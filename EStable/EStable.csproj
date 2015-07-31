@@ -128,6 +128,8 @@
     <Content Include="Content\index.html" />
     <Content Include="Content\bower.json" />
     <Content Include="Content\package.json" />
+    <Content Include="Content\src\sass\content.scss" />
+    <Content Include="Content\src\sass\form.scss" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Content\src\views\email.html" />
     <Content Include="Content\src\vendor\angular\angular.min.js.map" />
