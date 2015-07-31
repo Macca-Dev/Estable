@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-  //sass = require('gulp-ruby-sass'),
   shell = require('gulp-shell'),
   watch = require('gulp-watch'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -32,18 +31,14 @@ gulp.task('sass', function(){
   .pipe(concat('all.css'))
   .pipe(gulp.dest('dist/css'));
 });
+ 
 
 gulp.task('header_css', function(){
   gulp.src('src/sass/header/**/*.scss')
-  .pipe(sass({style: 'expanded'}))
-  .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(concat('header.css'))
-  .pipe(gulp.dest('dist/css'))
-  .pipe(rename({suffix: '.min'}))
-  .pipe(minifycss())
   .pipe(gulp.dest('dist/css'));
-})
-
+});
 
 gulp.task('javascript', function(){
   return gulp.src('src/js/**/*.js')
