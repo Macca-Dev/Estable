@@ -7,7 +7,6 @@ var gulp = require('gulp'),
   streamqueue = require('streamqueue'), //not sure if we'll need this yet
   jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
-  imagemin = require('gulp-imagemin'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
