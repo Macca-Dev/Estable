@@ -11,6 +11,7 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
+  sass = require('gulp-sass'),
   cache = require('gulp-cache'); //we should use this but can add it later on
 
 gulp.task('css', function () {
@@ -22,6 +23,13 @@ gulp.task('css', function () {
   .pipe(gulp.dest('dist/css'))
   .pipe(rename({suffix: '.min'}))
   .pipe(minifycss())
+  .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('sass', function(){
+  gulp.src('src/sass/*.scss')
+  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+  .pipe(concat('all.css'))
   .pipe(gulp.dest('dist/css'));
 });
 
@@ -68,6 +76,6 @@ gulp.task('watch', function () {
 });
 
 //*****DEFAULT****//
-gulp.task('default', ['clean', /*'css'*/], function() {
+gulp.task('default', ['clean', 'sass' /*'css'*/], function() {
     gulp.start('javascript');
 });
