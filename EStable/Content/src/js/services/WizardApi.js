@@ -4,8 +4,8 @@
     wizardApi = function($http) {
         var postStable = function (data) {
             return $http({
-                //url: "http://establewizardapi.azurewebsites.net/stable",
-                url: "http://wizard.service/stable",
+                url: "http://establewizardapi.azurewebsites.net/stable",
+                //url: "http://wizard.service/stable",
                 method: "POST",
                 data: data
             });
