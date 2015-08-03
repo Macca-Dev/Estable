@@ -108,13 +108,24 @@
     <Content Include="Content\Layout.css" />
     <Content Include="Content\legacy.css" />
     <Content Include="Content\src\js\controllers\BaseController.js" />
+    <Content Include="Content\src\js\controllers\StableController.js" />
     <Content Include="Content\src\js\controllers\WizardEmailController.js" />
+    <Content Include="Content\src\js\controllers\wizardFinancialController.js" />
     <Content Include="Content\src\js\services\WizardApi.js" />
     <Content Include="Content\src\js\Wizard.js" />
+    <Content Include="Content\src\sass\content.css">
+      <DependentUpon>content.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\src\sass\content.min.css">
+      <DependentUpon>content.css</DependentUpon>
+    </Content>
     <Content Include="Content\src\vendor\angular\angular-route.js" />
     <Content Include="Content\src\vendor\angular\angular-route.min.js" />
     <Content Include="Content\src\vendor\angular\angular.js" />
     <Content Include="Content\src\vendor\angular\angular.min.js" />
+    <Content Include="Content\src\views\charge.html" />
+    <Content Include="Content\src\views\financial.html" />
+    <Content Include="Content\src\views\stable.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

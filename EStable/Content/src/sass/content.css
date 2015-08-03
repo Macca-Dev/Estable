@@ -1,15 +1,13 @@
-* {
+﻿* {
   margin: 0;
   padding: 0;
-  border: 0;
-}
+  border: 0; }
 
 html {
   background: url("/Images/Background.png");
-  font-family: sans-serif;
-}
+  font-family: sans-serif; }
 
-footer {  
+footer {
   background-image: url("/Images/Buffer.jpg");
   background-repeat: repeat-x;
   height: 75px;
@@ -17,9 +15,7 @@ footer {
   margin-left: -6px;
   padding-right: 14px;
   bottom: -2em;
-  position: fixed;
-}
+  position: fixed; }
 
-.content{
-  margin-bottom: 80px;
-}
+.content {
+  margin-bottom: 80px; }

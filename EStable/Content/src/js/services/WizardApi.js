@@ -13,8 +13,8 @@
 
         var getStable = function(email){
             return $http({
-                //url: "http://establewizardapi.azurewebsites.net/stable/" + email,
-                url: "http://wizard.service/stable/" + email,
+                url: "http://establewizardapi.azurewebsites.net/stable/" + email,
+                //url: "http://wizard.service/stable/" + email,
                 method: "GET",
             });
         };
