@@ -4,8 +4,9 @@
   wizardStableController = function($scope, $rootScope, wizardApi){
     var onGetStableComplete = function(data){
       $scope.stable = JSON.parse(data.data.Result);
-    },
-    onError = function(data){
+    };
+
+    var onError = function(data){
       console.log(data);
     };
 
@@ -18,11 +19,13 @@
 
       wizardApi.postStable(stable)
       .then(onPostStableComplete, onError);
+      //.then(onPostStableComplete, error.handle());
     };
 
     wizardApi.getStable($rootScope.user.email)
     .then(onGetStableComplete, onError);
-
+    //.then(onGetStableComplete, error.handle());
   };
+
   wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
 }());
