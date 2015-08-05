@@ -2,7 +2,7 @@
   <form name="stableForm" ng-submit="postStable(stable)" class="stable-form col-md-6 col-md-offset-3">
      <div class="form-group">
        <label>Stable Name</label>
-       <input ng-model="stable.StableName" name="stableName" ng-minlength="{{ validation.minLength }}" type="text" class="stable-name-field form-control" required/>
+       <input ng-model="stable.StableName" name="stableName" ng-minlength="validation.minLength" type="text" class="stable-name-field form-control" required/>
 
        <div role="alert">
         <span class"error" ng-show="stableForm.stableName.$error.minlength">{{ validation.messages.maxlength }}</span>

@@ -5,7 +5,7 @@
   validation = function(){
    var maxLength = 150,
    minLength = 2,
-   emailPattern= "/^[\\w\\d_!?%.+-]+@[\\w\\d-]+\\.[\\w\\d-.]+/g",
+   emailPattern= /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+/g,
    getMaxLengthMessage = function(){
       var message = "please enter less than " + maxLength + " characters";
       return message;
