@@ -2,12 +2,17 @@
   <form name="stableForm" ng-submit="postStable(stable)" class="stable-form col-md-6 col-md-offset-3">
      <div class="form-group">
        <label>Stable Name</label>
-       <input ng-model="stable.StableName" type="text" class="stable-name-field form-control" />
+       <input ng-model="stable.StableName" name="stableName" ng-minlength="{{ validation.minLength }}" type="text" class="stable-name-field form-control" required/>
+
+       <div role="alert">
+        <span class"error" ng-show="stableForm.stableName.$error.minlength">{{ validation.messages.maxlength }}</span>
+       </div>
+
      </div>
      <div class="form-group">
-        <div class="radio">
+        <div class="radio" id="RacingCode">
           <label>
-            <input ng-model="stable.RacingCode" type="radio" name="RacingCode" value="Gallops">
+            <input ng-model="stable.RacingCode" required type="radio" name="RacingCode" value="Gallops">
             Gallops
           </label>
         </div>
@@ -38,7 +43,7 @@
       </div>
       <div class="form-group">
         <label>Trainer</label>
-        <input ng-model="stable.Trainer" type="text" class="trainer-field form-control"/>
+        <input ng-model="stable.Trainer" type="text" class="trainer-field form-control" required/>
       </div>
       <div class="form-group">
         <label>Legal Entity</label>
@@ -61,7 +66,7 @@
       <textarea ng-model="stable.Address" class="address-field form-control"></textarea>
     </div>
     <div class="form-group">
-      <input type="submit" value="Submit" class="btn btn-default"/>
+      <input type="submit" value="Submit" class="btn btn-default" ng-disabled="emailForm.$invalid"/>
     </div>
   </form>
 </div>

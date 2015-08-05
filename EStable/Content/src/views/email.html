@@ -2,10 +2,14 @@
   <form name="emailForm" ng-submit="storeEmail(email)" class="emailForm col-md-6 col-md-offset-3">
     <div class="form-group">
       <label>Email </label>
-      <input ng-model="email" type="text" class="form-control"/>
+      <input ng-model="email" type="email" ng-pattern="{{ validation.emailPattern }}" name="StableEmail" class="form-control" required/>
+
+      <div role="alert">
+        <span class"error" ng-show="emailForm.StableEmail.$invalid">Please enter a valid email address.</span>
+       </div>
     </div>
     <div class="form-group">
-      <input type="submit" value="Create eStable" class="btn btn-default"/>
+      <input type="submit" value="Create eStable" class="btn btn-default" ng-disabled="emailForm.$invalid"/>
     </div>
   </form>
 </div>

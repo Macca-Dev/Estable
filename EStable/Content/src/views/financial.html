@@ -21,7 +21,7 @@
       <input ng-model="financial.NextInvoiceNumber" type="text" class="form-control"/>
     </div>
     <div class="form-group">
-      <input type="submit" value="Create eStable" class="btn btn-default"/>
+      <input type="submit" value="Create eStable" class="btn btn-default" ng-disabled="emailForm.$invalid"/>
     </div>
   </form>
 </div>
