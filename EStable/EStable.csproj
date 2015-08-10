@@ -111,6 +111,8 @@
     <Content Include="Content\src\js\controllers\StableController.js" />
     <Content Include="Content\src\js\controllers\WizardEmailController.js" />
     <Content Include="Content\src\js\controllers\wizardFinancialController.js" />
+    <Content Include="Content\src\js\services\error.js" />
+    <Content Include="Content\src\js\services\validations.js" />
     <Content Include="Content\src\js\services\WizardApi.js" />
     <Content Include="Content\src\js\Wizard.js" />
     <Content Include="Content\src\sass\content.css">
