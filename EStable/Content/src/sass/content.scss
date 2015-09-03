@@ -5,21 +5,39 @@
 }
 
 html {
-  background: url("/Images/Background.png");
   font-family: sans-serif;
 }
 
-footer {  
-  background-image: url("/Images/Buffer.jpg");
-  background-repeat: repeat-x;
-  height: 75px;
-  width: 100%;
-  margin-left: -6px;
-  padding-right: 14px;
-  bottom: -2em;
-  position: fixed;
+body {
+  background: url("/Images/Background.png");
 }
 
-.content{
+.content {
   margin-bottom: 80px;
+  margin-top: 40px;
+}
+
+.wrapper {
+  background: #fff;
+  margin: 30px 10%;
+  width: 80%;
+  border-radius: 8px;
+
+  .nav-pills li {
+    width: 33%;
+    a {
+      border-radius: none;
+      &:first-child {
+        border-radius: 8px 0 0 0;
+      }
+    }
+  }
+
+  .btn{
+    background-image: none;
+    background-color: steelblue;
+    color: whitesmoke;
+    text-shadow: none;
+    border: none;
+  }
 }
