@@ -15,6 +15,8 @@
         $rootScope.user.stableName = data.config.data.stableName;
       };
 
+      stable.stableEmail = $rootScope.user.email;
+
       wizardApi.postStable(stable)
       .then(onPostStableComplete, onError);
       //.then(onPostStableComplete, error.handle());
