@@ -3,7 +3,7 @@
   var wizard = angular.module("wizard"),
   wizardStableController = function($scope, $rootScope, wizardApi){
     var onGetStableComplete = function(data){
-      $scope.stable = JSON.parse(data.data.Result);
+      $scope.stable = JSON.parse(data.data);
     };
 
     var onError = function(data){
