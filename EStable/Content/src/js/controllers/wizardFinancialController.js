@@ -4,8 +4,8 @@
     wizardFinancialController = function($scope, $rootScope, wizardApi) {
 
     	var onGetFinancialComplete = function(data){
-            $scope.financial = JSON.parse(data.data.Result);    
-            $scope.financial.TaxDate = new Date($scope.financial.TaxDate);       
+            $scope.financial = JSON.parse(data.data);
+            $scope.financial.TaxDate = new Date($scope.financial.TaxDate);
     	};
 
     	var onError = function(data){
