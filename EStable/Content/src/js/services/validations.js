@@ -1,5 +1,5 @@
 (function(){
-  "use strict"
+  "use strict";
 
   var wizard = angular.module("wizard"),
   validation = function(){

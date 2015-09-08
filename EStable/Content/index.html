@@ -29,25 +29,25 @@
             </div>
         </header>
         <div class="wrapper">
-        <ul class="nav nav-pills">
-            <li class="active">
+        <ul class="nav nav-pills" ng-controller="wizardNavigationController">
+            <li ng-class="menuClass('')">
               <span class="chevron"></span>
-              <a href="#about" data-toggle="tab">Sign Up</a>
+              <a ng-click="navigate('')" data-toggle="tab">Sign Up</a>
             </li>
-            <li>
+            <li ng-class="menuClass('stable')">
               <span class="chevron"></span>
-              <a href="/stable" data-toggle="tab">Stable</a>
+              <a ng-click="navigate('stable')" data-toggle="tab">Stable</a>
             </li>
-            <li>
+            <li ng-class="menuClass('financial')">
               <span class="chevron"></span>
-              <a href="/financial" data-toggle="tab">Financial</a>
+              <a ng-click="navigate('financial')"  data-toggle="tab">Financial</a>
             </li>
-            <li>
+            <li ng-class="menuClass('charge')">
               <span class="chevron"></span>
-              <a href="/charge" data-toggle="tab">Charge</a>
+              <a ng-click="navigate('charge')"  data-toggle="tab">Charge</a>
             </li>
-            <li>
-              <a href="/summary" data-toggle="tab">Summary</a>
+            <li ng-class="menuClass('summary')">
+              <a ng-click="navigate('summary')" data-toggle="tab">Summary</a>
             </li>
         </ul>
         <div ng-view class="container-fluid content"></div>
