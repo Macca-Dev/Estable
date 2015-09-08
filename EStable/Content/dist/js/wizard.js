@@ -24,6 +24,124 @@
     });
 }());
 
+(function () {
+    "use strict";
+    var wizard = angular.module("wizard"),
+    BaseController = function ($scope, $rootScope, validation) {
+        var user = {
+            email : "",
+            stableName: ""
+        };
+
+        $rootScope.user = user;
+        $scope.validation = validation;
+        $scope.title = "eStable Creation";
+    };
+
+    wizard.controller("BaseController", ["$scope", "$rootScope", "validation", BaseController]);
+}());
+
+(function(){
+  "use strict";
+  var wizard = angular.module("wizard"),
+  wizardStableController = function($scope, $rootScope, wizardApi){
+    var onGetStableComplete = function(data){
+      $scope.stable = JSON.parse(data.data);
+    };
+
+    var onError = function(data){
+      console.log(data);
+    };
+
+    $scope.postStable = function(stable) {
+      var onPostStableComplete = function(data) {
+        $rootScope.user.stableName = data.config.data.stableName;
+      };
+
+      stable.stableEmail = $rootScope.user.email;
+
+      wizardApi.postStable(stable)
+      .then(onPostStableComplete, onError);
+      //.then(onPostStableComplete, error.handle());
+    };
+
+    wizardApi.getStable($rootScope.user.email)
+    .then(onGetStableComplete, onError);
+    //.then(onGetStableComplete, error.handle());
+  };
+
+  wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
+}());
+
+(function () {
+  "use strict";
+    var wizard = angular.module("wizard"),
+    wizardEmailController = function($scope, $rootScope, $location) {
+
+        $scope.storeEmail = function(email) {
+          $location.path('/stable');
+          $rootScope.user.email = email;
+        };
+    };
+    wizard.controller("wizardEmailController", ["$scope", "$rootScope", "$location", wizardEmailController]);
+}());
+
+(function () {
+  "use strict";
+    var wizard = angular.module("wizard"),
+    wizardNavigationController = function($scope, $location) {
+
+        /**
+        *Takes the user to the section selected.
+        */
+        $scope.navigate = function(path) {
+          $location.path(path);
+        };
+
+        /**
+        * controlls the active clas sto be set on the current view of the wizard.
+        */
+        $scope.menuClass = function(page) {
+         var current = $location.path().substring(1);
+         return page === current ? "active" : "";
+       };
+    };
+    wizard.controller("wizardNavigationController", ["$scope", "$location", wizardNavigationController]);
+}());
+
+(function () {
+  "use strict";
+    var wizard = angular.module("wizard"),
+    wizardFinancialController = function($scope, $rootScope, wizardApi) {
+
+    	var onGetFinancialComplete = function(data){
+            $scope.financial = JSON.parse(data.data);
+            $scope.financial.TaxDate = new Date($scope.financial.TaxDate);
+    	};
+
+    	var onError = function(data){
+	      console.log(data);
+	    };
+
+
+        $scope.postFinancial = function(financial) {
+        	var onPostFinancialComplete = function(data){
+        		console.log(data);
+        	};
+
+        	financial.stableEmail = $rootScope.user.email;
+
+        	wizardApi.postFinancial(financial)
+        	.then(onPostFinancialComplete, onError);
+        };
+
+        wizardApi.getFinancial($rootScope.user.email)
+        .then(onGetFinancialComplete, onError);
+    };
+
+    wizard.controller("wizardFinancialController", ["$scope", "$rootScope", "wizardApi", wizardFinancialController]);
+}());
+
 (function() {
     "use strict";
     var wizard = angular.module("wizard"),
@@ -75,17 +193,18 @@
 (function(){
 	"use string";
 	var wizard = angular.module("wizard");
-	
+
 	var error = function(){
 		var handle = function(data){
 			console.log(data);
 		};
-	}
+	};
 
 	wizard.service("error", error);
 }());
+
 (function(){
-  "use strict"
+  "use strict";
 
   var wizard = angular.module("wizard"),
   validation = function(){
@@ -117,97 +236,4 @@
     };
   };
   wizard.service("validation", validation);
-}());
-
-(function () {
-    "use strict";
-    var wizard = angular.module("wizard"),
-    BaseController = function ($scope, $rootScope, validation) {
-        var user = {
-            email : "",
-            stableName: ""
-        };
-
-        $rootScope.user = user;
-        $scope.validation = validation;
-        $scope.title = "eStable Creation";
-    };
-
-    wizard.controller("BaseController", ["$scope", "$rootScope", "validation", BaseController]);
-}());
-
-(function(){
-  "use strict";
-  var wizard = angular.module("wizard"),
-  wizardStableController = function($scope, $rootScope, wizardApi){
-    var onGetStableComplete = function(data){
-      $scope.stable = JSON.parse(data.data.Result);
-    };
-
-    var onError = function(data){
-      console.log(data);
-    };
-
-    $scope.postStable = function(stable) {
-      var onPostStableComplete = function(data) {
-        $rootScope.user.stableName = data.config.data.stableName;
-      };
-
-      wizardApi.postStable(stable)
-      .then(onPostStableComplete, onError);
-      //.then(onPostStableComplete, error.handle());
-    };
-
-    wizardApi.getStable($rootScope.user.email)
-    .then(onGetStableComplete, onError);
-    //.then(onGetStableComplete, error.handle());
-  };
-
-  wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
-}());
-
-(function () {
-  "use strict";
-    var wizard = angular.module("wizard"),
-    wizardEmailController = function($scope, $rootScope, $location) {
-
-        $scope.storeEmail = function(email) {
-          $location.path('/stable');
-          $rootScope.user.email = email;
-        };
-    };
-    wizard.controller("wizardEmailController", ["$scope", "$rootScope", "$location", wizardEmailController]);
-}());
-
-(function () {
-  "use strict";
-    var wizard = angular.module("wizard"),
-    wizardFinancialController = function($scope, $rootScope, wizardApi) {
-
-    	var onGetFinancialComplete = function(data){
-            $scope.financial = JSON.parse(data.data.Result);    
-            $scope.financial.TaxDate = new Date($scope.financial.TaxDate);       
-    	};
-
-    	var onError = function(data){
-	      console.log(data);
-	    };
-
-
-        $scope.postFinancial = function(financial) {
-        	var onPostFinancialComplete = function(data){
-        		console.log(data);
-        	};
-
-        	financial.stableEmail = $rootScope.user.email;
-
-        	wizardApi.postFinancial(financial)
-        	.then(onPostFinancialComplete, onError);
-        };
-
-        wizardApi.getFinancial($rootScope.user.email)
-        .then(onGetFinancialComplete, onError);
-    };
-
-    wizard.controller("wizardFinancialController", ["$scope", "$rootScope", "wizardApi", wizardFinancialController]);
 }());
