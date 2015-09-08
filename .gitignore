@@ -30,5 +30,5 @@ _ReSharper*/
 EStable/Content/node_modules/*
 packages/*
 bower_components/*
-#EStable/Content/dist/*
+EStable/Content/dist/*
 EStable/Content/sass-cache/*
