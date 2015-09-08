@@ -16,72 +16,154 @@
               templateUrl: "src/views/financial.html",
               controller: "wizardFinancialController"
             })
-            .when("/charge", {
+            /*.when("/charge", {
               templateUrl: "src/views/charge.html",
               controller: "wizardChargeController"
-            })
+            })*/
             .otherwise({ redirectTo: "/" });
     });
+}());
+
+(function() {
+    "use strict";
+    var wizard = angular.module("wizard"),
+    wizardApi = function($http) {
+        var postStable = function (stable) {
+            return $http({
+                url: "http://establewizardapi.azurewebsites.net/stable",
+                //url: "http://wizard.service/stable",
+                method: "POST",
+                data: stable
+            });
+        },
+        getStable = function(email){
+            return $http({
+                url: "http://establewizardapi.azurewebsites.net/stable/" + email,
+                //url: "http://wizard.service/stable/" + email,
+                method: "GET",
+            });
+        },
+        postFinancial = function(financial){
+            return $http({
+                url: "http://establewizardapi.azurewebsites.net/financial",
+                method: "POST",
+                data: financial
+            });
+        },
+        getFinancial = function(email){
+            return $http({
+                url: "http://establewizardapi.azurewebsites.net/financial/" + email,
+                method: "GET"
+            });
+        };
+
+        return {
+            postStable: postStable,
+            getStable: getStable,
+            postFinancial: postFinancial,
+            getFinancial: getFinancial
+        };
+    };
+
+    wizard.factory("wizardApi", wizardApi);
+    wizard.config(function($httpProvider) {
+      //Enable cross domain calls
+      $httpProvider.defaults.useXDomain = true;
+  });
+}());
+
+(function(){
+	"use string";
+	var wizard = angular.module("wizard");
+	
+	var error = function(){
+		var handle = function(data){
+			console.log(data);
+		};
+	}
+
+	wizard.service("error", error);
+}());
+(function(){
+  "use strict"
+
+  var wizard = angular.module("wizard"),
+  validation = function(){
+   var maxLength = 150,
+   minLength = 2,
+   emailPattern= /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+/g,
+   getMaxLengthMessage = function(){
+      var message = "please enter less than " + maxLength + " characters";
+      return message;
+    },
+    getMinLengthMessage = function(){
+      var message = "please enter more than " + minLength  + " characters";
+      return message;
+    },
+    getRequiredMessage = function(){
+      return "required";
+    },
+    messages = {
+       maxlength: getMaxLengthMessage(),
+       minlength: getMinLengthMessage(),
+       required: getRequiredMessage()
+     };
+
+    return{
+      maxLength: maxLength,
+      minLength: minLength,
+      emailPattern: emailPattern,
+      messages: messages
+    };
+  };
+  wizard.service("validation", validation);
 }());
 
 (function () {
     "use strict";
     var wizard = angular.module("wizard"),
-    BaseController = function ($scope, $rootScope) {
+    BaseController = function ($scope, $rootScope, validation) {
         var user = {
             email : "",
             stableName: ""
         };
-        
+
         $rootScope.user = user;
+        $scope.validation = validation;
         $scope.title = "eStable Creation";
     };
 
-    wizard.controller("BaseController", ["$scope", "$rootScope", BaseController]);
+    wizard.controller("BaseController", ["$scope", "$rootScope", "validation", BaseController]);
 }());
 
 (function(){
   "use strict";
-      var wizard = angular.module("wizard"),
-      onError = function(reason) {
-          console.log("reason", reason);
-      },
-      wizardStableController = function($scope, $rootScope, wizardApi){
-        var onPostStableComplete = function(data) {
-            console.log("data", data);
-            $rootScope.user.stableName = data.config.data.stableName;
-        },
+  var wizard = angular.module("wizard"),
+  wizardStableController = function($scope, $rootScope, wizardApi){
+    var onGetStableComplete = function(data){
+      $scope.stable = JSON.parse(data.data.Result);
+    };
 
-        stable = {
-          stableName: "",
-          racingCode: "",
-          trainer: "",
-          legalEntity: "",
-          mobile: "",
-          phone: "",
-          fax: "",
-          address: ""
-        };
+    var onError = function(data){
+      console.log(data);
+    };
 
-       $scope.racingCode = stable.racingCode;
-       $scope.trainer = stable.trainer;
-       $scope.legalEntity = stable.legalEntity;
-       $scope.mobile = stable.mobile;
-       $scope.phone = stable.phone;
-       $scope.fax = stable.fax;
-       $scope.address = stable.address;
-       $scope.email = $rootScope.user.email;
-       $scope.stableName = stable.stableName;
-
-       $scope.postStable = function(stable) {
-         stable.stableEmail = $rootScope.user.email;
-         //var data = JSON.stringify(stable);
-         wizardApi.postStable(stable)
-          .then(onPostStableComplete, this.onError);
-        };
-
+    $scope.postStable = function(stable) {
+      var onPostStableComplete = function(data) {
+        $rootScope.user.stableName = data.config.data.stableName;
       };
-      wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
+
+      wizardApi.postStable(stable)
+      .then(onPostStableComplete, onError);
+      //.then(onPostStableComplete, error.handle());
+    };
+
+    wizardApi.getStable($rootScope.user.email)
+    .then(onGetStableComplete, onError);
+    //.then(onGetStableComplete, error.handle());
+  };
+
+  wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
 }());
 
 (function () {
@@ -100,118 +182,32 @@
 (function () {
   "use strict";
     var wizard = angular.module("wizard"),
-    wizardChargeController = function($scope) {
+    wizardFinancialController = function($scope, $rootScope, wizardApi) {
 
-        $scope.storeCharge = function() {
+    	var onGetFinancialComplete = function(data){
+            $scope.financial = JSON.parse(data.data.Result);    
+            $scope.financial.TaxDate = new Date($scope.financial.TaxDate);       
+    	};
+
+    	var onError = function(data){
+	      console.log(data);
+	    };
+
+
+        $scope.postFinancial = function(financial) {
+        	var onPostFinancialComplete = function(data){
+        		console.log(data);
+        	};
+
+        	financial.stableEmail = $rootScope.user.email;
+
+        	wizardApi.postFinancial(financial)
+        	.then(onPostFinancialComplete, onError);
         };
-    },
-    EditableRowCtrl = function($scope, $filter, $http) {
-      $scope.users = [
-        {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
-        {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
-        {id: 3, name: 'awesome user3', status: 2, group: null}
-      ];
 
-      $scope.statuses = [
-        {value: 1, text: 'status1'},
-        {value: 2, text: 'status2'},
-        {value: 3, text: 'status3'},
-        {value: 4, text: 'status4'}
-      ];
-
-      $scope.groups = [];
-      $scope.loadGroups = function() {
-        return $scope.groups.length ? null : $http.get('/groups').success(function(data) {
-          $scope.groups = data;
-        });
-      };
-
-      $scope.showGroup = function(user) {
-        if(user.group && $scope.groups.length) {
-          var selected = $filter('filter')($scope.groups, {id: user.group});
-          return selected.length ? selected[0].text : 'Not set';
-        } else {
-          return user.groupName || 'Not set';
-        }
-      };
-
-      $scope.showStatus = function(user) {
-        var selected = [];
-        if(user.status) {
-          selected = $filter('filter')($scope.statuses, {value: user.status});
-        }
-        return selected.length ? selected[0].text : 'Not set';
-      };
-
-      $scope.checkName = function(data, id) {
-        if (id === 2 && data !== 'awesome') {
-          return "Username 2 should be `awesome`";
-        }
-      };
-
-      $scope.saveUser = function(data, id) {
-        //$scope.user not updated yet
-        angular.extend(data, {id: id});
-        return $http.post('/saveUser', data);
-      };
-
-      // remove user
-      $scope.removeUser = function(index) {
-        $scope.users.splice(index, 1);
-      };
-
-      // add user
-      $scope.addUser = function() {
-        $scope.inserted = {
-          id: $scope.users.length+1,
-          name: '',
-          status: null,
-          group: null
-        };
-        $scope.users.push($scope.inserted);
-      };
+        wizardApi.getFinancial($rootScope.user.email)
+        .then(onGetFinancialComplete, onError);
     };
 
-  wizard.controller('EditableRowCtrl', ["$scope", "xeditable",  "$filter", "$http", EditableRowCtrl]);
-  wizard.controller("wizardChargeController", ["$scope", wizardChargeController]);
-}());
-
-(function () {
-  "use strict";
-    var wizard = angular.module("wizard"),
-    wizardFinancialController = function($scope) {
-
-        $scope.storeFinancial = function() {
-        };
-    };
-    wizard.controller("wizardFinancialController", ["$scope", wizardFinancialController]);
-}());
-
-(function() {
-    "use strict";
-    var wizard = angular.module("wizard"),
-    wizardApi = function($http) {
-        var postStable = function (data) {
-            //return $http.post("http://establewizardapi.azurewebsites.net/stable", data);
-                // .then(function(response) {
-                //     return response.data;
-                // });
-
-
-        return $http({
-            url: "http://establewizardapi.azurewebsites.net/stable",
-            method: "POST",
-            data: data
-          });
-        };
-
-        return {
-            postStable: postStable
-        };
-    };
-    wizard.factory("wizardApi", wizardApi);
-    wizard.config(function($httpProvider) {
-      //Enable cross domain calls
-      $httpProvider.defaults.useXDomain = true;
-    });
+    wizard.controller("wizardFinancialController", ["$scope", "$rootScope", "wizardApi", wizardFinancialController]);
 }());

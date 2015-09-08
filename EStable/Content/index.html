@@ -8,7 +8,8 @@
         <link href="dist/css/all.css" rel="stylesheet" />
         <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-        <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+        <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet" />
+        <link href="node_modules/font-awesome/css/font-awesome.css " rel="stylesheet" />
 
         <script src="src/vendor/angular/angular.min.js"></script>
         <script src="src/vendor/angular/angular-route.min.js"></script>
@@ -20,14 +21,35 @@
     <body ng-controller="BaseController">
         <header>
             <div class="header-wrapper">
-                <div class="help">help</div>
+                <div class="help"><i class="fa fa-question-circle fa-2x"></i></div>
                 <p class="page-title">{{ title }}</p>
                 <div class="email-in-header">
                     {{ user.email }}
                 </div>
             </div>
         </header>
-        <div class="buffer"></div>
+        <div class="wrapper">
+        <ul class="nav nav-pills" ng-controller="wizardNavigationController">
+            <li ng-class="menuClass('')">
+              <span class="chevron"></span>
+              <a ng-click="navigate('')" data-toggle="tab">Sign Up</a>
+            </li>
+            <li ng-class="menuClass('stable')">
+              <span class="chevron"></span>
+              <a ng-click="navigate('stable')" data-toggle="tab">Stable</a>
+            </li>
+            <li ng-class="menuClass('financial')">
+              <span class="chevron"></span>
+              <a ng-click="navigate('financial')"  data-toggle="tab">Financial</a>
+            </li>
+            <li ng-class="menuClass('charge')">
+              <span class="chevron"></span>
+              <a ng-click="navigate('charge')"  data-toggle="tab">Charge</a>
+            </li>
+            <li ng-class="menuClass('summary')">
+              <a ng-click="navigate('summary')" data-toggle="tab">Summary</a>
+            </li>
+        </ul>
         <div ng-view class="container-fluid content"></div>
         <!--<footer></footer>-->
     </body>
