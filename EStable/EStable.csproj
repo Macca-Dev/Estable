@@ -108,6 +108,7 @@
     <Content Include="Content\Layout.css" />
     <Content Include="Content\legacy.css" />
     <Content Include="Content\src\js\controllers\BaseController.js" />
+    <Content Include="Content\src\js\controllers\navController.js" />
     <Content Include="Content\src\js\controllers\StableController.js" />
     <Content Include="Content\src\js\controllers\WizardEmailController.js" />
     <Content Include="Content\src\js\controllers\wizardFinancialController.js" />
