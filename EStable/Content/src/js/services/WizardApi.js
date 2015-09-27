@@ -5,17 +5,15 @@
         var postStable = function (stable) {
             return $http({
                 url: "http://establewizardapi.azurewebsites.net/stable",
-                //url: "http://wizard.service/stable",
                 method: "POST",
                 data: stable
             });
         },
-        getStable = function(email){
-            return $http({
-                url: "http://establewizardapi.azurewebsites.net/stable/" + email,
-                //url: "http://wizard.service/stable/" + email,
-                method: "GET",
-            });
+        getData = function(dataType, email){
+          return $http({
+              url: "http://establewizardapi.azurewebsites.net/" + dataType + "/" + email,
+              method: "GET",
+          });
         },
         postFinancial = function(financial){
             return $http({
@@ -23,19 +21,12 @@
                 method: "POST",
                 data: financial
             });
-        },
-        getFinancial = function(email){
-            return $http({
-                url: "http://establewizardapi.azurewebsites.net/financial/" + email,
-                method: "GET"
-            });
         };
 
         return {
+            getData: getData,
             postStable: postStable,
-            getStable: getStable,
-            postFinancial: postFinancial,
-            getFinancial: getFinancial
+            postFinancial: postFinancial
         };
     };
 

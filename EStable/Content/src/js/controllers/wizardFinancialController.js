@@ -24,7 +24,7 @@
         	.then(onPostFinancialComplete, onError);
         };
 
-        wizardApi.getFinancial($rootScope.user.email)
+        wizardApi.getData("financial", $rootScope.user.email)
         .then(onGetFinancialComplete, onError);
     };
 

@@ -16,10 +16,10 @@
               templateUrl: "src/views/financial.html",
               controller: "wizardFinancialController"
             })
-            /*.when("/charge", {
+            .when("/charge", {
               templateUrl: "src/views/charge.html",
               controller: "wizardChargeController"
-            })*/
+            })
             .otherwise({ redirectTo: "/" });
     });
 }());

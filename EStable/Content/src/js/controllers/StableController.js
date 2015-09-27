@@ -22,7 +22,7 @@
       //.then(onPostStableComplete, error.handle());
     };
 
-    wizardApi.getStable($rootScope.user.email)
+    wizardApi.getData("stable", $rootScope.user.email)
     .then(onGetStableComplete, onError);
     //.then(onGetStableComplete, error.handle());
   };
