@@ -24,7 +24,7 @@
         	.then(onPostChargeComplete, onError);
         };
 
-        wizardApi.getData("charge", $rootScope.user.email)
+        wizardApi.getData("chargetypes", $rootScope.user.email)
         .then(onGetChargeComplete, onError);
     };
 
