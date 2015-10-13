@@ -45,6 +45,17 @@
           description: null,
           rate: 0
         });
+        debugger;
+      };
+
+      // remove user
+      $scope.removeStableRow = function(index) {
+        $scope.stableCharges.splice(index, 1);
+      };
+
+      // remove standard row
+      $scope.removeStandardRow = function(index) {
+        $scope.standardCharges.splice(index, 1);
       };
 
       $scope.postcharge = function(charge) {

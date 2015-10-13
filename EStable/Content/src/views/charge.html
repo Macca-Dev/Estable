@@ -11,7 +11,9 @@
       <tr ng-repeat="charge in stableCharges">
         <td>
           <!-- editable description, text -->
-          <input type="text" ng-click="rowform.$show()" editable-text="charge.description" e-name="charge.description" e-form="rowform" e-required value="{{ charge.description || '+ description' }}"/>
+          <span type="text" ng-click="rowform.$show()" editable-text="charge.description" e-name="charge.description" e-form="rowform" e-required value="{{ charge.description || '+ description' }}">
+            {{ charge.description || '+ description' }}
+          </span>
         </td>
         <td>
           <!-- editable units, dropdown -->
@@ -40,7 +42,7 @@
             </button>
           </form>
           <div class="buttons" ng-show="!rowform.$visible">
-            <button class="btn btn-danger" ng-click="removeSableChargeType($index)">X</button>
+            <button class="btn btn-danger" ng-click="removeStableRow($index)">X</button>
           </div>
         </td>
       </tr>
@@ -59,7 +61,13 @@
         <tr ng-repeat="charge in standardCharges">
           <td>
             <!-- editable username (text with validation) -->
-            <span ng-click="standardform.$show()" editable-text="charge.description" e-name="name" e-form="standardform" onbeforesave="validateDescription($data, user.id)" e-required>
+            <span
+            ng-click="standardform.$show()"
+            editable-text="charge.description"
+            e-name="description"
+            e-form="standardform"
+            onbeforesave="validateDescription($data, user.id)"
+            e-required>
               {{ charge.description || '+ description' }}
             </span]>
           </td>
@@ -68,7 +76,6 @@
             <span ng-click="standardform.$show()"
             editable-select="charge.rate"
             e-name="rate"
-            onshow="loadGroups()"
             e-form="standardform"
             e-ng-options="g.id as g.text for g in groups">
               {{ charge.rate || '0.00'}}
@@ -98,10 +105,10 @@
             </form>
             <div
             class="buttons"
-            ng-show="!rowform.$visible">
+            ng-show="!standardform.$visible">
               <button
               class="btn btn-danger"
-              ng-click="removeUser($index)">X</button>
+              ng-click="removeStandardRow($index)">X</button>
             </div>
           </td>
         </tr>
