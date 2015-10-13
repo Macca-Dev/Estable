@@ -17,6 +17,8 @@
         {id: 4, description: null, unit: 2, rate: 4, inStable: true},
       ];
 
+      $scope.standardCharges = [];
+
       //wizard dropdown for units
       $scope.units = [
         {value: 0, text: "Daily"},
@@ -26,6 +28,24 @@
         {value: 4, text: "Quarterly"},
         {value: 5, text: "Yearly"}
       ];
+
+      $scope.addStableRow = function(){
+        $scope.stableCharges.push({
+          id: $scope.standardCharges.length+1,
+          description: null,
+          unit: 0,
+          rate: 0,
+          inStable: false
+        });
+      };
+
+      $scope.addStandardRow = function(){
+        $scope.standardCharges.push({
+          id: $scope.standardCharges.length+1,
+          description: null,
+          rate: 0
+        });
+      };
 
       $scope.postcharge = function(charge) {
       	var onPostChargeComplete = function(data){

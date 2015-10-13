@@ -1,35 +1,37 @@
 <div ng-controller="wizardChargeController">
-    <h1>Stable Charge Types</h1>
+  <div class="StableChargeTypeGrid">
+    <h3>Stable Charge Types</h3>
      <table class="table table-bordered table-hover table-condensed">
       <tr style="font-weight: bold">
         <td style="width:35%">Description</td>
         <td style="width:20%">Unit</td>
-        <td style="width:20%">Rate</td>
+        <td style="width:20%">Rate ($)</td>
         <td style="width:25%">In Stable</td>
       </tr>
       <tr ng-repeat="charge in stableCharges">
         <td>
-          <!-- editable username (text with validation) -->
+          <!-- editable description, text -->
           <input type="text" ng-click="rowform.$show()" editable-text="charge.description" e-name="charge.description" e-form="rowform" e-required value="{{ charge.description || '+ description' }}"/>
         </td>
         <td>
-          <!-- editable status (select-local) -->
+          <!-- editable units, dropdown -->
           <div editable-select="charge.unit" e-name="charge.unit" e-form="rowform" e-ng-options="u.value as u.text for u in units" value="{{ charge.unit }}" ng-click="rowform.$show()">
             {{ units[charge.unit].text }}
           </div>
         </td>
         <td>
+          <!-- editable rates, number -->
           <span editable-number="charge.rate" e-name="charge.rate" e-form="rowform" e-ng-options="g.id as g.text for g in groups" ng-click="rowform.$show()">
             {{ charge.rate }}
           </span>
         </td>
-
         <td>
+          <!-- editable units, checkbox -->
           <input type="checkbox" ng-click="rowform.$show()" e-form="rowform" ng-checked="{{charge.inStable}}" />
         </td>
         <td style="white-space: nowrap">
           <!-- form -->
-          <form editable-form name="rowform" onbeforesave="saveChargeType($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+          <form editable-form name="rowform" onbeforesave="postcharge($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
               save
             </button>
@@ -44,47 +46,68 @@
       </tr>
     </table>
 
-    <button class="btn btn-default" ng-click="addUser()">Add row</button>
+    <button class="btn btn-default" ng-click="addStableRow()">Add row</button>
+  </div>
 
-
-      <h1>Standard Charge Types</h1>
+  <div class="standardChargeTypeGrid">
+      <h3>Standard Charge Types</h3>
        <table class="table table-bordered table-hover table-condensed">
         <tr style="font-weight: bold">
           <td style="width:35%">Description</td>
-          <td style="width:20%">Rate</td>
+          <td style="width:20%">Rate ($)</td>
         </tr>
         <tr ng-repeat="charge in standardCharges">
           <td>
             <!-- editable username (text with validation) -->
-            <span href="#" editable-text="charge.description" e-name="name" e-form="rowform" onbeforesave="validateDescription($data, user.id)" e-required>
+            <span ng-click="standardform.$show()" editable-text="charge.description" e-name="name" e-form="standardform" onbeforesave="validateDescription($data, user.id)" e-required>
               {{ charge.description || '+ description' }}
             </span]>
           </td>
           <td>
             <!-- editable group (select-remote) -->
-            <span editable-select="charge.rate" e-name="rate" onshow="loadGroups()" e-form="rowform" e-ng-options="g.id as g.text for g in groups">
-              {{ charge.rate }}
+            <span ng-click="standardform.$show()"
+            editable-select="charge.rate"
+            e-name="rate"
+            onshow="loadGroups()"
+            e-form="standardform"
+            e-ng-options="g.id as g.text for g in groups">
+              {{ charge.rate || '0.00'}}
             </span>
           </td>
           <td style="white-space: nowrap">
             <!-- form -->
-            <form editable-form name="rowform" onbeforesave="saveChargeType($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
-              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+            <form
+            editable-form name="standardform"
+            onbeforesave="saveChargeType($data, user.id)"
+            ng-show="standardform.$visible"
+            class="form-buttons form-inline"
+            shown="inserted == user">
+              <button
+              type="submit"
+              ng-disabled="standardform.$waiting"
+              class="btn btn-primary">
                 save
               </button>
-              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+              <button
+              type="button"
+              ng-disabled="standardform.$waiting"
+              ng-click="standardform.$cancel()"
+              class="btn btn-default">
                 cancel
               </button>
             </form>
-            <div class="buttons" ng-show="!rowform.$visible">
-              <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-              <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+            <div
+            class="buttons"
+            ng-show="!rowform.$visible">
+              <button
+              class="btn btn-danger"
+              ng-click="removeUser($index)">X</button>
             </div>
           </td>
         </tr>
       </table>
 
-      <button class="btn btn-default" ng-click="addUser()">Add row</button>
+      <button class="btn btn-default" ng-click="addStandardRow()">Add row</button>
     </div>
 
 </div>
