@@ -20,7 +20,7 @@
 
         	financial.stableEmail = $rootScope.user.email;
 
-        	wizardApi.postFinancial(financial)
+        	wizardApi.postData(financial, "financial")
         	.then(onPostFinancialComplete, onError);
         };
 

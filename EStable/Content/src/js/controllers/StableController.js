@@ -17,7 +17,7 @@
 
       stable.stableEmail = $rootScope.user.email;
 
-      wizardApi.postStable(stable)
+      wizardApi.postData(stable, "stable")
       .then(onPostStableComplete, onError);
       //.then(onPostStableComplete, error.handle());
     };

@@ -2,31 +2,23 @@
     "use strict";
     var wizard = angular.module("wizard"),
     wizardApi = function($http) {
-        var postStable = function (stable) {
-            return $http({
-                url: "http://establewizardapi.azurewebsites.net/stable",
-                method: "POST",
-                data: stable
-            });
-        },
-        getData = function(dataType, email){
+        var getData = function(dataType, email){
           return $http({
               url: "http://establewizardapi.azurewebsites.net/" + dataType + "/" + email,
               method: "GET",
           });
         },
-        postFinancial = function(financial){
+        postData = function(data, endPoint){
             return $http({
-                url: "http://establewizardapi.azurewebsites.net/financial",
+                url: "http://establewizardapi.azurewebsites.net/" + endPoint,
                 method: "POST",
-                data: financial
+                data: data
             });
         };
 
         return {
             getData: getData,
-            postStable: postStable,
-            postFinancial: postFinancial
+            postData: postData
         };
     };
 
