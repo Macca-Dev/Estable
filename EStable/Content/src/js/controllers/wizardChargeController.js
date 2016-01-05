@@ -45,7 +45,6 @@
           description: null,
           rate: 0
         });
-        debugger;
       };
 
       // remove user

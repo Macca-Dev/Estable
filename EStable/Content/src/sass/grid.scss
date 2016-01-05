@@ -1,0 +1,74 @@
+table {
+  display: flex;
+
+  tbody{
+    display: flex;
+    flex-direction: column;
+
+    td{
+      cursor: pointer;
+
+      .form-control{
+        padding: 0.2em;
+        height: 100%;
+        border: none;
+      }
+    }
+
+    tr{
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+
+      .editing-row{
+        width: 105%;
+        right: 2.5%;
+
+      }
+    }
+  }
+
+  form{
+    height: 100%;
+  }
+
+  .editable-wrap{
+    width: 100%;
+    height: 100%;
+
+    input{
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  .btn-primary, .btn-default, .btn-danger{
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .btn-danger{
+    color: #D9534F;
+    background-color: transparent;
+  }
+
+  .btn-primary, .btn-default{
+    width: 50%;
+  }
+
+  .editable-empty{
+    color: #B2B8BD;
+    &:hover{
+      color: inherit;
+    }
+  }
+
+  .number-field{
+    text-align: right;
+  }
+}

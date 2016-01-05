@@ -1,5 +1,9 @@
 ﻿(function() {
-    var wizard = angular.module("wizard", ["ngRoute"]);
+    var wizard = angular.module("wizard", ["ngRoute", "xeditable"]);
+
+    wizard.run(function(editableOptions) {
+      editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+    });
 
     wizard.config(function($routeProvider) {
 
