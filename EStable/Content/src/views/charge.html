@@ -3,15 +3,15 @@
     <h3>Stable Charge Types</h3>
      <table class="table table-bordered table-hover table-condensed">
       <tr style="font-weight: bold">
-        <td style="width:35%">Description</td>
+        <td style="width:55%">Description</td>
         <td style="width:20%">Unit</td>
-        <td style="width:20%">Rate ($)</td>
-        <td style="width:25%">In Stable</td>
+        <td style="width:10%">Rate ($)</td>
+        <td style="width:15%">In Stable</td>
       </tr>
       <tr ng-repeat="charge in stableCharges">
-        <td style="width:35%">
+        <td style="width:55%">
           <!-- editable description, text -->
-          <div type="text" ng-click="rowform.$show()" editable-text="charge.description" e-name="charge.description" e-form="rowform" e-required value="{{ charge.description || '+ description' }}">
+          <div type="text" ng-click="rowform.$show()"  editable-text="charge.description" e-name="charge.description" e-form="rowform" e-required value="{{ charge.description || '+ description' }}">
             {{ charge.description || '+ description' }}
           </div>
         </td>
@@ -21,13 +21,13 @@
             {{ units[charge.unit].text }}
           </div>
         </td>
-        <td style="width:20%">
+        <td style="width:10%">
           <!-- editable rates, number -->
           <div editable-number="charge.rate" e-name="charge.rate" e-form="rowform" e-ng-options="g.id as g.text for g in groups" ng-click="rowform.$show()">
             {{ charge.rate }}
           </div>
         </td>
-        <td style="width:25%">
+        <td style="width:10%">
           <!-- editable units, checkbox -->
           <input type="checkbox" ng-click="rowform.$show()" e-form="rowform" ng-checked="{{charge.inStable}}" />
         </td>
@@ -49,7 +49,7 @@
       <h3>Standard Charge Types</h3>
        <table class="table table-bordered table-hover table-condensed">
         <tr style="font-weight: bold">
-          <td style="width:35%">Description</td>
+          <td style="width:80%">Description</td>
           <td style="width:20%">Rate ($)</td>
         </tr>
         <tr ng-repeat="charge in standardCharges">

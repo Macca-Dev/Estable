@@ -7,8 +7,6 @@ table {
 
     td{
       cursor: pointer;
-      display: flex;
-      flex: 1;
 
       .form-control{
         padding: 0.2em;
@@ -18,7 +16,6 @@ table {
     }
 
     tr{
-      display: flex;
       width: 100%;
       flex-direction: row;
 
@@ -43,6 +40,10 @@ table {
       border-radius: 0;
       box-shadow: none;
     }
+  }
+
+  [editable-number], [type=checkbox]{
+    text-align: right;
   }
 
   .btn-primary, .btn-default, .btn-danger{
