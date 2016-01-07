@@ -10,6 +10,8 @@
 	      console.log(data);
 	    };
 
+      console.log($scope);
+
       $scope.stableCharges = [
         {id: 1, description: 'awesome user1', unit: 2, rate: 4, inStable: true},
         {id: 2, description: 'awesome user2', unit: 3, rate: 4, inStable: true},
