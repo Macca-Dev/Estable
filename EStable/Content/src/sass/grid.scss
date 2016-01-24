@@ -81,3 +81,16 @@ table {
     text-align: right;
   }
 }
+
+
+.editing-row{
+  position: relative;
+  background: white;
+  width: 110%;
+  left: -5%;
+  padding: 0.4em;
+
+  td{
+    border: none;
+  }
+}

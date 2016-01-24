@@ -8,9 +8,30 @@
     	},
       onError = function(data){
 	      console.log(data);
-	    };
+	    },
+      activeRow = null,
+      activeRowform = null,
+      hideRow = function(row, rowform){
+        if(!activeRow || !rowform) return;
+        rowform.$cancel();
+        var trimmedName = row.className.split('editing-row')[1];
+        activeRow.className = trimmedName;
+      };
 
-      console.log($scope);
+      $scope.hideRow = function(event){
+        console.log('blur');
+        hideRow(activeRow, this.rowform);
+      };
+
+      $scope.showRow= function(event){
+        //remove detail from previous active row
+        hideRow(activeRow, activeRowform);
+        //reassign active row.
+        activeRowform = this.rowform
+        activeRow = (event.target.parentElement.nodeName !== "TR") ? event.target.parentElement.parentElement : event.target.parentElement;
+        activeRowform.$show();
+        activeRow.className += ' editing-row';
+      };
 
       $scope.stableCharges = [
         {id: 1, description: 'awesome user1', unit: 2, rate: 4, inStable: true},
