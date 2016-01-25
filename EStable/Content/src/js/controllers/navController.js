@@ -1,12 +1,12 @@
 (function () {
   "use strict";
     var wizard = angular.module("wizard"),
-    wizardNavigationController = function($scope, $location) {
+    wizardNavigationController = function($scope, $rootScope, $location) {
 
         /**
         *Takes the user to the section selected.
         */
-        $scope.navigate = function(path) {
+        $rootScope.navigate = function(path) {
           $location.path(path);
         };
 
@@ -18,5 +18,5 @@
          return page === current ? "active" : "";
        };
     };
-    wizard.controller("wizardNavigationController", ["$scope", "$location", wizardNavigationController]);
+    wizard.controller("wizardNavigationController", ["$scope", "$rootScope", "$location", wizardNavigationController]);
 }());

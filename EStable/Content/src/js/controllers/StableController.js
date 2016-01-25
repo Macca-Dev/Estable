@@ -19,12 +19,10 @@
 
       wizardApi.postData(stable, "stable")
       .then(onPostStableComplete, onError);
-      //.then(onPostStableComplete, error.handle());
     };
 
     wizardApi.getData("stable", $rootScope.user.email)
     .then(onGetStableComplete, onError);
-    //.then(onGetStableComplete, error.handle());
   };
 
   wizard.controller("wizardStableController", ["$scope", "$rootScope", "wizardApi", wizardStableController]);
