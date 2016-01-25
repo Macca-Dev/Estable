@@ -3,7 +3,7 @@
     var wizard = angular.module("wizard"),
     wizardChargeController = function($scope, $rootScope, wizardApi) {
     	var onGetChargeComplete = function(data){
-            $scope.charge = JSON.parse(data.data);
+            $scope.charge = data.data;
             $scope.charge.TaxDate = new Date($scope.charge.TaxDate);
     	},
       onError = function(data){
