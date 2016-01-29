@@ -3,8 +3,8 @@
     var wizard = angular.module("wizard"),
     wizardChargeController = function($scope, $rootScope, wizardApi) {
     	var onGetChargeComplete = function(data){
-            $scope.charge = data.data;
-            $scope.charge.TaxDate = new Date($scope.charge.TaxDate);
+            $scope.standardCharges = data.data.StandardChargeTypes;
+            $scope.stableCharges = data.data.StableChargeTypes;
     	},
       onError = function(data){
 	      console.log(data);
@@ -15,14 +15,13 @@
         StableEmail: $rootScope.user.email,
         StableName: $rootScope.user.stableName,
         StableChargeTypes: [
-          { id: 1, description: null, unit: 1, rate: 0, inStable: true }
+          { Id: 1, Description: null, Unit: 1, Rate: 0, InStable: true }
         ],
         StandardChargeTypes: [
-          {id: 1, description: null, rate: 0 }
+          {Id: 1, Description: null, Rate: 0 }
         ]
       },
       hideRow = function(row, rowform){
-        if(!activeRow || !rowform) return;
 
         saveRow(rowform);
         rowform.$cancel();
@@ -55,7 +54,6 @@
         $scope.postcharge();
       };
 
-
       //Scope Assignments
       $scope.hideRow = function(event){
         console.log('blur');
@@ -63,8 +61,18 @@
       };
 
       $scope.showRow= function(event){
-        //remove detail from previous active row
-        hideRow(activeRow, activeRowform);
+        if(activeRow){
+          var clickedOnRow = (event.target.parentElement.nodeName !== "TR") ? event.target.parentElement.parentElement.parentElement : event.target.parentElement;
+          var children = activeRow.children;
+          for(var key in children){
+            if(clickedOnRow === children[key]){
+              return;
+            }
+          }
+          //remove detail from previous active row
+          hideRow(activeRow, activeRowform);
+        }
+
         //reassign active row.
         activeRowform = this.rowform;
         activeRow = (event.target.parentElement.nodeName !== "TR") ? event.target.parentElement.parentElement : event.target.parentElement;
@@ -88,19 +96,19 @@
 
       $scope.addStableRow = function(){
         data.StableChargeTypes.push({
-          id: $scope.standardCharges.length+1,
-          description: null,
-          unit: 0,
-          rate: 0,
-          inStable: false
+          Id: $scope.standardCharges.length+1,
+          Description: null,
+          Unit: 0,
+          Rate: 0,
+          InStable: false
         });
       };
 
       $scope.addStandardRow = function(){
         $scope.standardCharges.push({
-          id: $scope.standardCharges.length+1,
-          description: null,
-          rate: 0
+          Id: $scope.standardCharges.length+1,
+          Description: null,
+          Rate: 0
         });
       };
 
