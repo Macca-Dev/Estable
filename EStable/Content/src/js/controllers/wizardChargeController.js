@@ -3,8 +3,12 @@
     var wizard = angular.module("wizard"),
     wizardChargeController = function($scope, $rootScope, wizardApi) {
     	var onGetChargeComplete = function(data){
-            $scope.standardCharges = data.data.StandardChargeTypes;
-            $scope.stableCharges = data.data.StableChargeTypes;
+        if(data.data.StandardChargeTypes){
+          $scope.standardCharges = data.data.StandardChargeTypes;
+        }
+        if(data.data.StableChargeTypes){
+          $scope.stableCharges = data.data.StableChargeTypes;
+        }        
     	},
       onError = function(data){
 	      console.log(data);
@@ -66,8 +70,13 @@
           var children = activeRow.children;
           for(var key in children){
             if(clickedOnRow === children[key]){
+
               return;
             }
+          }
+
+          if(clickedOnRow === children[children.length - 1]){
+            addStableRow();
           }
           //remove detail from previous active row
           hideRow(activeRow, activeRowform);
